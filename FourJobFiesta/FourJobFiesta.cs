@@ -349,7 +349,7 @@ namespace FourJobFiesta
 
         private void FormFourJobFiesta_Load(object sender, EventArgs e)
         {
-            if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
+            if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave") && File.Exists(config.AppSettings.Settings["DefaultSave"].Value))
             {
                 LoadSave(config.AppSettings.Settings["DefaultSave"].Value);
             }
@@ -366,7 +366,7 @@ namespace FourJobFiesta
                 "water," + picWater.ImageLocation,
                 "fire," + picFire.ImageLocation,
                 "earth," + picEarth.ImageLocation
-        };
+            };
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Save Current Run";
