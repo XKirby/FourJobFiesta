@@ -35,7 +35,7 @@ namespace FourJobFiesta
         public List<string> no750Jobs = new List<string>();
 
         public const string IMG_FORMAT_STR = "Images/{0}.png";
-        public const string TIMER_FORMAT = @"mm\:hh\:ss\.ff";
+        public const string TIMER_FORMAT = @"hh\:mm\:ss\.ff";
 
         public FormFourJobFiesta()
         {
