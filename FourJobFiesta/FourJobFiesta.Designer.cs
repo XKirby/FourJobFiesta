@@ -55,8 +55,12 @@
             this.txtTimer = new System.Windows.Forms.TextBox();
             this.clrTimerText = new System.Windows.Forms.ColorDialog();
             this.btnTmrStart = new System.Windows.Forms.Button();
-            this.btnTmrStop = new System.Windows.Forms.Button();
             this.btnTmrReset = new System.Windows.Forms.Button();
+            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
@@ -174,24 +178,29 @@
             // timerToolStripMenuItem
             // 
             this.timerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configureToolStripMenuItem,
             this.editTextColorToolStripMenuItem,
-            this.editBackgroundColorToolStripMenuItem});
+            this.editBackgroundColorToolStripMenuItem,
+            this.timerControlToolStripMenuItem,
+            this.startStopToolStripMenuItem,
+            this.resetToolStripMenuItem,
+            this.editShortcutsToolStripMenuItem});
             this.timerToolStripMenuItem.Name = "timerToolStripMenuItem";
-            this.timerToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.timerToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
             this.timerToolStripMenuItem.Text = "Timer";
             // 
             // editTextColorToolStripMenuItem
             // 
             this.editTextColorToolStripMenuItem.Name = "editTextColorToolStripMenuItem";
-            this.editTextColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.editTextColorToolStripMenuItem.Text = "Edit Text Color";
+            this.editTextColorToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.editTextColorToolStripMenuItem.Text = "     Edit Text Color";
             this.editTextColorToolStripMenuItem.Click += new System.EventHandler(this.editTextColorToolStripMenuItem_Click);
             // 
             // editBackgroundColorToolStripMenuItem
             // 
             this.editBackgroundColorToolStripMenuItem.Name = "editBackgroundColorToolStripMenuItem";
-            this.editBackgroundColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.editBackgroundColorToolStripMenuItem.Text = "Edit Background Color";
+            this.editBackgroundColorToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.editBackgroundColorToolStripMenuItem.Text = "     Edit Background Color";
             this.editBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.editBackgroundColorToolStripMenuItem_Click);
             // 
             // rulesToolStripMenuItem
@@ -283,9 +292,9 @@
             // 
             // labRoll
             // 
-            this.labRoll.Enabled = false;
             this.labRoll.Location = new System.Drawing.Point(75, 31);
             this.labRoll.Name = "labRoll";
+            this.labRoll.ReadOnly = true;
             this.labRoll.Size = new System.Drawing.Size(120, 20);
             this.labRoll.TabIndex = 32;
             // 
@@ -315,19 +324,9 @@
             this.btnTmrStart.UseVisualStyleBackColor = true;
             this.btnTmrStart.Click += new System.EventHandler(this.btnTmrStart_Click);
             // 
-            // btnTmrStop
-            // 
-            this.btnTmrStop.Location = new System.Drawing.Point(10, 542);
-            this.btnTmrStop.Name = "btnTmrStop";
-            this.btnTmrStop.Size = new System.Drawing.Size(75, 23);
-            this.btnTmrStop.TabIndex = 36;
-            this.btnTmrStop.Text = "Stop";
-            this.btnTmrStop.UseVisualStyleBackColor = true;
-            this.btnTmrStop.Click += new System.EventHandler(this.btnTmrStop_Click);
-            // 
             // btnTmrReset
             // 
-            this.btnTmrReset.Location = new System.Drawing.Point(10, 602);
+            this.btnTmrReset.Location = new System.Drawing.Point(120, 602);
             this.btnTmrReset.Name = "btnTmrReset";
             this.btnTmrReset.Size = new System.Drawing.Size(75, 23);
             this.btnTmrReset.TabIndex = 37;
@@ -335,13 +334,47 @@
             this.btnTmrReset.UseVisualStyleBackColor = true;
             this.btnTmrReset.Click += new System.EventHandler(this.btnTmrReset_Click);
             // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.configureToolStripMenuItem.Text = "Color Configuration";
+            // 
+            // timerControlToolStripMenuItem
+            // 
+            this.timerControlToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerControlToolStripMenuItem.Name = "timerControlToolStripMenuItem";
+            this.timerControlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.timerControlToolStripMenuItem.Text = "Timer Control";
+            // 
+            // startStopToolStripMenuItem
+            // 
+            this.startStopToolStripMenuItem.Name = "startStopToolStripMenuItem";
+            this.startStopToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.startStopToolStripMenuItem.Text = "     Start/Stop";
+            this.startStopToolStripMenuItem.Click += new System.EventHandler(this.startStopToolStripMenuItem_Click);
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.resetToolStripMenuItem.Text = "     Reset";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            // 
+            // editShortcutsToolStripMenuItem
+            // 
+            this.editShortcutsToolStripMenuItem.Name = "editShortcutsToolStripMenuItem";
+            this.editShortcutsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.editShortcutsToolStripMenuItem.Text = "     Edit Shortcuts";
+            this.editShortcutsToolStripMenuItem.Click += new System.EventHandler(this.editShortcutsToolStripMenuItem_Click);
+            // 
             // FormFourJobFiesta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 631);
             this.Controls.Add(this.btnTmrReset);
-            this.Controls.Add(this.btnTmrStop);
             this.Controls.Add(this.btnTmrStart);
             this.Controls.Add(this.txtTimer);
             this.Controls.Add(this.labRoll);
@@ -359,6 +392,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FormFourJobFiesta";
@@ -403,8 +437,12 @@
         private System.Windows.Forms.TextBox txtTimer;
         private System.Windows.Forms.ColorDialog clrTimerText;
         private System.Windows.Forms.Button btnTmrStart;
-        private System.Windows.Forms.Button btnTmrStop;
         private System.Windows.Forms.Button btnTmrReset;
+        private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem timerControlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startStopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editShortcutsToolStripMenuItem;
     }
 }
 

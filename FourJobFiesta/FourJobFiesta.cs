@@ -15,15 +15,13 @@ namespace FourJobFiesta
 {
     public partial class FormFourJobFiesta : Form
     {
-        public Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
         public Timer timer = new Timer();
 
         Stopwatch sw = new Stopwatch();
 
         public int min { get; set; }
         public int roll { get; set; }
-
+        
         public static TimeSpan SavedTime { get; set; }
         public static TimeSpan TimerTick { get; set; }
         
@@ -105,6 +103,10 @@ namespace FourJobFiesta
             no750Jobs.Add("Mime");
 
             AddContextMenus();
+            SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
+                Program.ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
+
+            Program.FinishInit(this);
         }
         
         private void AddContextMenus()
@@ -373,9 +375,9 @@ namespace FourJobFiesta
 
         private void FormFourJobFiesta_Load(object sender, EventArgs e)
         {
-            if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave") && File.Exists(config.AppSettings.Settings["DefaultSave"].Value))
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave") && File.Exists(Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value))
             {
-                LoadSave(config.AppSettings.Settings["DefaultSave"].Value);
+                LoadSave(Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value);
             }
         }
 
@@ -409,16 +411,16 @@ namespace FourJobFiesta
                     }
                 }
 
-                if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
+                if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
                 {
-                    config.AppSettings.Settings["DefaultSave"].Value = sfd.FileName;
+                    Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value = sfd.FileName;
                 }
                 else
                 {
-                    config.AppSettings.Settings.Add("DefaultSave", sfd.FileName);
+                    Program.ConfigFile.AppSettings.Settings.Add("DefaultSave", sfd.FileName);
                 }
 
-                config.Save(ConfigurationSaveMode.Modified);
+                Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("userSettings");
             }
         }
@@ -433,16 +435,16 @@ namespace FourJobFiesta
 
             LoadSave(ofd.FileName);
 
-            if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
             {
-                config.AppSettings.Settings["DefaultSave"].Value = ofd.FileName;
+                Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value = ofd.FileName;
             }
             else
             {
-                config.AppSettings.Settings.Add("DefaultSave", ofd.FileName);
+                Program.ConfigFile.AppSettings.Settings.Add("DefaultSave", ofd.FileName);
             }
 
-            config.Save(ConfigurationSaveMode.Modified);
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("userSettings");
         }
 
@@ -544,26 +546,64 @@ namespace FourJobFiesta
 
             txtTimer.BackColor = clrTimerText.Color;
         }
+        
+        public void StartStopClick()
+        {
+            if (btnTmrStart.Text == "Start")
+            {
+                sw.Start();
+                btnTmrStart.Text = "Stop";
+            }
+            else
+            {
+                SavedTime = SavedTime + sw.Elapsed;
+                sw.Reset();
+                btnTmrStart.Text = "Start";
+            }
+        }
 
         private void btnTmrStart_Click(object sender, EventArgs e)
         {
-            sw.Start();
+            StartStopClick();
         }
-
-        private void btnTmrStop_Click(object sender, EventArgs e)
-        {
-            SavedTime = SavedTime + sw.Elapsed;
-            sw.Reset();
-        }
-
-        private void btnTmrReset_Click(object sender, EventArgs e)
+        
+        
+        public void ResetClick()
         {
             if (MessageBox.Show("Are you sure you want to reset the timer?", "Reset Timer", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 sw.Reset();
                 SavedTime = new TimeSpan();
                 txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
+                btnTmrStart.Text = "Start";
             }
+        }
+
+        private void btnTmrReset_Click(object sender, EventArgs e)
+        {
+            ResetClick();
+        }
+
+        private void startStopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnTmrStart_Click(sender, e);
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnTmrReset_Click(sender, e);
+        }
+
+        private void editShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TimerShortcuts ts = new TimerShortcuts();
+            ts.Show();
+        }
+
+        public void SetKeybinds(string startStop, string reset)
+        {
+            startStopToolStripMenuItem.ShortcutKeyDisplayString = startStop;
+            resetToolStripMenuItem.ShortcutKeyDisplayString = reset;
         }
     }
 }
