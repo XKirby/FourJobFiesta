@@ -59,6 +59,7 @@
             // 
             // comboStartStop
             // 
+            this.comboStartStop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboStartStop.FormattingEnabled = true;
             this.comboStartStop.Location = new System.Drawing.Point(77, 12);
             this.comboStartStop.Name = "comboStartStop";
@@ -85,6 +86,7 @@
             // 
             // comboReset
             // 
+            this.comboReset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboReset.FormattingEnabled = true;
             this.comboReset.Location = new System.Drawing.Point(77, 39);
             this.comboReset.Name = "comboReset";
