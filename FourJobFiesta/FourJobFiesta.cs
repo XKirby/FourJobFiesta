@@ -21,7 +21,9 @@ namespace FourJobFiesta
 
         public int min { get; set; }
         public int roll { get; set; }
-        
+
+        public string SaveFile { get; set; }
+
         public static TimeSpan SavedTime { get; set; }
         public static TimeSpan TimerTick { get; set; }
         
@@ -383,7 +385,6 @@ namespace FourJobFiesta
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StringBuilder save = new StringBuilder();
             string[] line = {
                 "crystal," + comboCrystal.SelectedIndex.ToString(),
                 "type," + comboRules.SelectedIndex.ToString(),
@@ -395,33 +396,42 @@ namespace FourJobFiesta
                 "time," + txtTimer.Text
             };
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Save Current Run";
-            sfd.Filter = "CSV|*.csv";
-            sfd.ShowDialog();
-
-            // If the file name is not an empty string open it for saving.  
-            if (sfd.FileName != "")
+            if (string.IsNullOrEmpty(SaveFile))
             {
-                using (StreamWriter sw = new StreamWriter(sfd.OpenFile()))
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "Save Current Run";
+                sfd.Filter = "CSV|*.csv";
+                sfd.ShowDialog();
+
+                // If the file name is not an empty string open it for saving.  
+                if (sfd.FileName != "")
                 {
-                    foreach (string str in line)
+                    using (StreamWriter sw = new StreamWriter(sfd.OpenFile()))
                     {
-                        sw.WriteLine(str);
+                        foreach (string str in line)
+                        {
+                            sw.WriteLine(str);
+                        }
                     }
-                }
 
-                if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
-                {
-                    Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value = sfd.FileName;
-                }
-                else
-                {
-                    Program.ConfigFile.AppSettings.Settings.Add("DefaultSave", sfd.FileName);
-                }
+                    if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
+                    {
+                        Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value = sfd.FileName;
+                    }
+                    else
+                    {
+                        Program.ConfigFile.AppSettings.Settings.Add("DefaultSave", sfd.FileName);
+                    }
 
-                Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("userSettings");
+                    Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("userSettings");
+
+                    SaveFile = sfd.FileName;
+                }
+            }
+            else
+            {
+                File.WriteAllText(SaveFile, string.Join(Environment.NewLine, line));
             }
         }
 
@@ -431,8 +441,7 @@ namespace FourJobFiesta
             ofd.Title = "Open Saved Run";
             ofd.Filter = "CSV|*.csv";
             ofd.ShowDialog();
-
-
+            
             LoadSave(ofd.FileName);
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
@@ -452,6 +461,7 @@ namespace FourJobFiesta
         {
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
+                SaveFile = path;
                 sw.Reset();
                 SavedTime = new TimeSpan();
 
@@ -517,6 +527,7 @@ namespace FourJobFiesta
             
             sw.Reset();
             SavedTime = new TimeSpan();
+            SaveFile = string.Empty;
         }
 
         private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -604,6 +615,55 @@ namespace FourJobFiesta
         {
             startStopToolStripMenuItem.ShortcutKeyDisplayString = startStop;
             resetToolStripMenuItem.ShortcutKeyDisplayString = reset;
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] line = {
+                "crystal," + comboCrystal.SelectedIndex.ToString(),
+                "type," + comboRules.SelectedIndex.ToString(),
+                "mod," + comboMod.SelectedIndex.ToString(),
+                "wind," + picWind.ImageLocation,
+                "water," + picWater.ImageLocation,
+                "fire," + picFire.ImageLocation,
+                "earth," + picEarth.ImageLocation,
+                "time," + txtTimer.Text
+            };
+            
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save Current Run";
+            sfd.Filter = "CSV|*.csv";
+            sfd.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.  
+            if (sfd.FileName != "")
+            {
+                using (StreamWriter sw = new StreamWriter(sfd.OpenFile()))
+                {
+                    foreach (string str in line)
+                    {
+                        sw.WriteLine(str);
+                    }
+                }
+
+                if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
+                {
+                    Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value = sfd.FileName;
+                }
+                else
+                {
+                    Program.ConfigFile.AppSettings.Settings.Add("DefaultSave", sfd.FileName);
+                }
+
+                Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("userSettings");
+
+                SaveFile = sfd.FileName;
+            }
+            else
+            {
+                File.WriteAllText(sfd.FileName, string.Join(Environment.NewLine, line));
+            }
         }
     }
 }

@@ -41,8 +41,13 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAltF4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picWind = new System.Windows.Forms.PictureBox();
             this.picWater = new System.Windows.Forms.PictureBox();
@@ -56,11 +61,7 @@
             this.clrTimerText = new System.Windows.Forms.ColorDialog();
             this.btnTmrStart = new System.Windows.Forms.Button();
             this.btnTmrReset = new System.Windows.Forms.Button();
-            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
@@ -132,8 +133,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
-            this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
             this.closeAltF4ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -144,7 +146,7 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -153,7 +155,7 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -162,8 +164,8 @@
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
             this.loadToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.loadToolStripMenuItem.Text = "Open";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // closeAltF4ToolStripMenuItem
@@ -171,7 +173,7 @@
             this.closeAltF4ToolStripMenuItem.Name = "closeAltF4ToolStripMenuItem";
             this.closeAltF4ToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.closeAltF4ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.closeAltF4ToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.closeAltF4ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeAltF4ToolStripMenuItem.Text = "Close";
             this.closeAltF4ToolStripMenuItem.Click += new System.EventHandler(this.closeAltF4ToolStripMenuItem_Click);
             // 
@@ -186,8 +188,15 @@
             this.resetToolStripMenuItem,
             this.editShortcutsToolStripMenuItem});
             this.timerToolStripMenuItem.Name = "timerToolStripMenuItem";
-            this.timerToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
+            this.timerToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.timerToolStripMenuItem.Text = "Timer";
+            // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.configureToolStripMenuItem.Text = "Color Configuration";
             // 
             // editTextColorToolStripMenuItem
             // 
@@ -202,6 +211,34 @@
             this.editBackgroundColorToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.editBackgroundColorToolStripMenuItem.Text = "     Edit Background Color";
             this.editBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.editBackgroundColorToolStripMenuItem_Click);
+            // 
+            // timerControlToolStripMenuItem
+            // 
+            this.timerControlToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timerControlToolStripMenuItem.Name = "timerControlToolStripMenuItem";
+            this.timerControlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.timerControlToolStripMenuItem.Text = "Timer Control";
+            // 
+            // startStopToolStripMenuItem
+            // 
+            this.startStopToolStripMenuItem.Name = "startStopToolStripMenuItem";
+            this.startStopToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.startStopToolStripMenuItem.Text = "     Start/Stop";
+            this.startStopToolStripMenuItem.Click += new System.EventHandler(this.startStopToolStripMenuItem_Click);
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.resetToolStripMenuItem.Text = "     Reset";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            // 
+            // editShortcutsToolStripMenuItem
+            // 
+            this.editShortcutsToolStripMenuItem.Name = "editShortcutsToolStripMenuItem";
+            this.editShortcutsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.editShortcutsToolStripMenuItem.Text = "     Edit Shortcuts";
+            this.editShortcutsToolStripMenuItem.Click += new System.EventHandler(this.editShortcutsToolStripMenuItem_Click);
             // 
             // rulesToolStripMenuItem
             // 
@@ -334,40 +371,14 @@
             this.btnTmrReset.UseVisualStyleBackColor = true;
             this.btnTmrReset.Click += new System.EventHandler(this.btnTmrReset_Click);
             // 
-            // configureToolStripMenuItem
+            // saveAsToolStripMenuItem
             // 
-            this.configureToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.configureToolStripMenuItem.Text = "Color Configuration";
-            // 
-            // timerControlToolStripMenuItem
-            // 
-            this.timerControlToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timerControlToolStripMenuItem.Name = "timerControlToolStripMenuItem";
-            this.timerControlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.timerControlToolStripMenuItem.Text = "Timer Control";
-            // 
-            // startStopToolStripMenuItem
-            // 
-            this.startStopToolStripMenuItem.Name = "startStopToolStripMenuItem";
-            this.startStopToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.startStopToolStripMenuItem.Text = "     Start/Stop";
-            this.startStopToolStripMenuItem.Click += new System.EventHandler(this.startStopToolStripMenuItem_Click);
-            // 
-            // resetToolStripMenuItem
-            // 
-            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.resetToolStripMenuItem.Text = "     Reset";
-            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
-            // 
-            // editShortcutsToolStripMenuItem
-            // 
-            this.editShortcutsToolStripMenuItem.Name = "editShortcutsToolStripMenuItem";
-            this.editShortcutsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.editShortcutsToolStripMenuItem.Text = "     Edit Shortcuts";
-            this.editShortcutsToolStripMenuItem.Click += new System.EventHandler(this.editShortcutsToolStripMenuItem_Click);
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // FormFourJobFiesta
             // 
@@ -443,6 +454,7 @@
         private System.Windows.Forms.ToolStripMenuItem startStopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editShortcutsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
     }
 }
 

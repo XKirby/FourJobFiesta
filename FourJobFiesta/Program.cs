@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -16,12 +17,17 @@ namespace FourJobFiesta
         public static Keys ResetKey { get; set; }
         public static Configuration ConfigFile { get; set; }
 
+        // key friendly name, value enum value
+        public static ConcurrentDictionary<string, string> KeyBindMap { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            SetKeyBindMap();
+
             _hookID = SetHook(_proc);
 
             ConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -60,6 +66,11 @@ namespace FourJobFiesta
 
             MainForm.SetKeybinds(ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
                 ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
+        }
+
+        private static void SetKeyBindMap()
+        {
+            KeyBindMap = new ConcurrentDictionary<string, string>();
         }
 
         #region >>> Latch Keys
