@@ -9,15 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace FourJobFiesta
 {
     public partial class FormFourJobFiesta : Form
     {
-        Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        public Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+        public Timer timer = new Timer();
+
+        Stopwatch sw = new Stopwatch();
 
         public int min { get; set; }
         public int roll { get; set; }
+
+        public static TimeSpan SavedTime { get; set; }
+        public static TimeSpan TimerTick { get; set; }
+        
         public Random r = new Random();
 
         public List<string> allJobs = new List<string>();
@@ -25,12 +34,22 @@ namespace FourJobFiesta
         public List<string> sevenFiftyJobs = new List<string>();
         public List<string> no750Jobs = new List<string>();
 
-        private const string IMG_FORMAT_STR = "Images/{0}.png";
+        public const string IMG_FORMAT_STR = "Images/{0}.png";
+        public const string TIMER_FORMAT = @"mm\:hh\:ss\.ff";
 
         public FormFourJobFiesta()
         {
             InitializeComponent();
+            
+            TimerTick = TimeSpan.FromMilliseconds(10);
+            SavedTime = new TimeSpan();
 
+            timer.Interval = 10;
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+            txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
+            
             allJobs.Add("Knight");
             allJobs.Add("Monk");
             allJobs.Add("Thief");
@@ -87,7 +106,7 @@ namespace FourJobFiesta
 
             AddContextMenus();
         }
-
+        
         private void AddContextMenus()
         {
             // Wind
@@ -129,6 +148,11 @@ namespace FourJobFiesta
             }
 
             picEarth.ContextMenu = cmEarth;
+        }
+        
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            txtTimer.Text = (SavedTime + sw.Elapsed).ToString(TIMER_FORMAT);
         }
 
         private void mcWindItem_Click(object sender, EventArgs e)
@@ -365,7 +389,8 @@ namespace FourJobFiesta
                 "wind," + picWind.ImageLocation,
                 "water," + picWater.ImageLocation,
                 "fire," + picFire.ImageLocation,
-                "earth," + picEarth.ImageLocation
+                "earth," + picEarth.ImageLocation,
+                "time," + txtTimer.Text
             };
 
             SaveFileDialog sfd = new SaveFileDialog();
@@ -405,6 +430,7 @@ namespace FourJobFiesta
             ofd.Filter = "CSV|*.csv";
             ofd.ShowDialog();
 
+
             LoadSave(ofd.FileName);
 
             if (config.AppSettings.Settings.AllKeys.Contains("DefaultSave"))
@@ -422,8 +448,11 @@ namespace FourJobFiesta
 
         private void LoadSave(string path)
         {
-            if (!string.IsNullOrEmpty(path))
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
+                sw.Reset();
+                SavedTime = new TimeSpan();
+
                 string[] save = File.ReadAllLines(path);
 
                 foreach (string line in save)
@@ -462,6 +491,9 @@ namespace FourJobFiesta
                                 picEarth.ImageLocation = split[1];
                                 break;
 
+                            case "time":
+                                SavedTime = TimeSpan.Parse(split[1]);
+                                break;
                             default:
                                 break;
                         }
@@ -480,16 +512,58 @@ namespace FourJobFiesta
             picFire.ImageLocation = string.Empty;
             picEarth.ImageLocation = string.Empty;
             labRoll.Text = string.Empty;
+            
+            sw.Reset();
+            SavedTime = new TimeSpan();
         }
 
         private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://fourjobfiesta.com/help.php?s=c#");
+            Process.Start("http://fourjobfiesta.com/help.php?s=c#");
         }
 
         private void closeAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void editTextColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clrTimerText.AnyColor = true;
+            clrTimerText.Color = txtTimer.ForeColor;
+            clrTimerText.ShowDialog();
+
+            txtTimer.ForeColor = clrTimerText.Color;
+        }
+
+        private void editBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clrTimerText.AnyColor = true;
+            clrTimerText.Color = txtTimer.BackColor;
+            clrTimerText.ShowDialog();
+
+            txtTimer.BackColor = clrTimerText.Color;
+        }
+
+        private void btnTmrStart_Click(object sender, EventArgs e)
+        {
+            sw.Start();
+        }
+
+        private void btnTmrStop_Click(object sender, EventArgs e)
+        {
+            SavedTime = SavedTime + sw.Elapsed;
+            sw.Reset();
+        }
+
+        private void btnTmrReset_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to reset the timer?", "Reset Timer", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                sw.Reset();
+                SavedTime = new TimeSpan();
+                txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
+            }
         }
     }
 }
