@@ -96,32 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FFVFJF2016.ico" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Bard.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Beast Master.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Berserker.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Black Mage.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Blue Mage.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Chemist.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Dancer.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Dragoon.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Freelancer.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Geomancer.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Knight.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Mime.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Monk.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Mystic Knight.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Ninja.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Ranger.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Red Mage.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Samurai.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Summoner.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Thief.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Time Mage.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\White Mage.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Wind.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Water.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Fire.png" CopyToOutputDirectory="Always" />
-    <Content Include="Images\Earth.png" CopyToOutputDirectory="Always" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,7 +61,7 @@ namespace FourJobFiesta
             allJobs.Add("Summoner");
             allJobs.Add("Berserker");
             allJobs.Add("Mystic Knight");
-            allJobs.Add("Beast Master");
+            allJobs.Add("Beastmaster");
             allJobs.Add("Geomancer");
             allJobs.Add("Ninja");
             allJobs.Add("Ranger");
@@ -97,7 +97,7 @@ namespace FourJobFiesta
             no750Jobs.Add("Thief");
             no750Jobs.Add("Berserker");
             no750Jobs.Add("Mystic Knight");
-            no750Jobs.Add("Beast Master");
+            no750Jobs.Add("Beastmaster");
             no750Jobs.Add("Ninja");
             no750Jobs.Add("Ranger");
             no750Jobs.Add("Dragoon");
@@ -161,22 +161,36 @@ namespace FourJobFiesta
 
         private void mcWindItem_Click(object sender, EventArgs e)
         {
-            picWind.ImageLocation = string.Format(IMG_FORMAT_STR, ((MenuItem)sender).Text);
+            picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + ((MenuItem)sender).Text);
         }
 
         private void mcWaterItem_Click(object sender, EventArgs e)
         {
-            picWater.ImageLocation = string.Format(IMG_FORMAT_STR, ((MenuItem)sender).Text);
+            picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + ((MenuItem)sender).Text);
         }
 
         private void mcFireItem_Click(object sender, EventArgs e)
         {
-            picFire.ImageLocation = string.Format(IMG_FORMAT_STR, ((MenuItem)sender).Text);
+            picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + ((MenuItem)sender).Text);
         }
 
         private void mcEarthItem_Click(object sender, EventArgs e)
         {
-            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, ((MenuItem)sender).Text);
+            if (checkBox1.Checked)
+            {
+                picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
+            }
+            else
+            {
+                if (((MenuItem)sender).Text == "Mime")
+                {
+                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
+                }
+                else
+                {
+                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + ((MenuItem)sender).Text);
+                }
+            }
         }
 
         private void butRandomize_Click(object sender, EventArgs e)
@@ -186,15 +200,15 @@ namespace FourJobFiesta
                 switch (comboRules.Text)
                 {
                     case "Team 750":
-                        labRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count - 1)];
+                        lblRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count - 1)];
                         break;
 
                     case "Team No 750":
-                        labRoll.Text = no750Jobs[r.Next(no750Jobs.Count - 1)];
+                        lblRoll.Text = no750Jobs[r.Next(no750Jobs.Count - 1)];
                         break;
 
                     default:
-                        labRoll.Text = allJobs[r.Next(allJobs.Count - 2)];
+                        lblRoll.Text = allJobs[r.Next(allJobs.Count - 2)];
                         break;
                 }
             }
@@ -203,15 +217,15 @@ namespace FourJobFiesta
                 switch (comboRules.Text)
                 {
                     case "Team 750":
-                        labRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count)];
+                        lblRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count)];
                         break;
 
                     case "Team No 750":
-                        labRoll.Text = no750Jobs[r.Next(no750Jobs.Count)];
+                        lblRoll.Text = no750Jobs[r.Next(no750Jobs.Count)];
                         break;
 
                     default:
-                        labRoll.Text = allJobs[r.Next(allJobs.Count)];
+                        lblRoll.Text = allJobs[r.Next(allJobs.Count)];
                         break;
                 }
             }
@@ -350,19 +364,33 @@ namespace FourJobFiesta
             switch (comboCrystal.SelectedIndex)
             {
                 case 0:
-                    picWind.ImageLocation = string.Format(IMG_FORMAT_STR, labRoll.Text);
+                    picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + lblRoll.Text);
                     break;
 
                 case 1:
-                    picWater.ImageLocation = string.Format(IMG_FORMAT_STR, labRoll.Text);
+                    picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + lblRoll.Text);
                     break;
 
                 case 2:
-                    picFire.ImageLocation = string.Format(IMG_FORMAT_STR, labRoll.Text);
+                    picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + lblRoll.Text);
                     break;
 
                 case 3:
-                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, labRoll.Text);
+                    if (checkBox1.Checked)
+                    {
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + lblRoll.Text);
+                    }
+                    else
+                    {
+                        if (lblRoll.Text == "Mime")
+                        {
+                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + lblRoll.Text);
+                        }
+                        else
+                        {
+                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + lblRoll.Text);
+                        }
+                    }
                     break;
 
                 default:
@@ -372,7 +400,7 @@ namespace FourJobFiesta
         
         public void rollJob(List<string> jobs, int min, int max)
         {
-            labRoll.Text = jobs[r.Next(min, max)];
+            lblRoll.Text = jobs[r.Next(min, max)];
         }
 
         private void FormFourJobFiesta_Load(object sender, EventArgs e)
@@ -393,7 +421,8 @@ namespace FourJobFiesta
                 "water," + picWater.ImageLocation,
                 "fire," + picFire.ImageLocation,
                 "earth," + picEarth.ImageLocation,
-                "time," + txtTimer.Text
+                "time," + txtTimer.Text,
+                "krile," + checkBox1.Checked.ToString()
             };
 
             if (string.IsNullOrEmpty(SaveFile))
@@ -506,6 +535,11 @@ namespace FourJobFiesta
                             case "time":
                                 SavedTime = TimeSpan.Parse(split[1]);
                                 break;
+
+                            case "krile":
+                                checkBox1.Checked = split[1] == "True";
+                                break;
+
                             default:
                                 break;
                         }
@@ -523,7 +557,7 @@ namespace FourJobFiesta
             picWater.ImageLocation = string.Empty;
             picFire.ImageLocation = string.Empty;
             picEarth.ImageLocation = string.Empty;
-            labRoll.Text = string.Empty;
+            lblRoll.Text = string.Empty;
             
             sw.Reset();
             SavedTime = new TimeSpan();
@@ -627,7 +661,8 @@ namespace FourJobFiesta
                 "water," + picWater.ImageLocation,
                 "fire," + picFire.ImageLocation,
                 "earth," + picEarth.ImageLocation,
-                "time," + txtTimer.Text
+                "time," + txtTimer.Text,
+                "krile," + checkBox1.Checked.ToString()
             };
             
             SaveFileDialog sfd = new SaveFileDialog();
@@ -663,6 +698,44 @@ namespace FourJobFiesta
             else
             {
                 File.WriteAllText(sfd.FileName, string.Join(Environment.NewLine, line));
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            BackColor = Color.WhiteSmoke;
+            label1.ForeColor = Color.Black;
+            label2.ForeColor = Color.Black;
+            label3.ForeColor = Color.Black;
+            label4.ForeColor = Color.Black;
+            checkBox1.ForeColor = Color.Black;
+        }
+
+        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BackColor = Color.Black;
+            label1.ForeColor = Color.White;
+            label2.ForeColor = Color.White;
+            label3.ForeColor = Color.White;
+            label4.ForeColor = Color.White;
+            checkBox1.ForeColor = Color.White;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(picEarth.ImageLocation))
+            {
+                if (checkBox1.Checked)
+                {
+                    picEarth.ImageLocation = picEarth.ImageLocation.Replace("Galuf-", "Krile-");
+                }
+                else
+                {
+                    if (!picEarth.ImageLocation.Contains("Krile-Mime"))
+                    {
+                        picEarth.ImageLocation = picEarth.ImageLocation.Replace("Krile-", "Galuf-");
+                    }
+                }
             }
         }
     }
