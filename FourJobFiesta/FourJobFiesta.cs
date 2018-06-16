@@ -40,7 +40,37 @@ namespace FourJobFiesta
         public FormFourJobFiesta()
         {
             InitializeComponent();
-            
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerBackgroundColor"))
+            {
+                string color = Program.ConfigFile.AppSettings.Settings["TimerBackgroundColor"].Value;
+
+                if (!string.IsNullOrEmpty(color))
+                    txtTimer.BackColor = Color.FromName(color);
+            }
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerTextColor"))
+            {
+                string color = Program.ConfigFile.AppSettings.Settings["TimerTextColor"].Value;
+
+                if (!string.IsNullOrEmpty(color))
+                    txtTimer.ForeColor = Color.FromName(color);
+            }
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
+            {
+                string theme = Program.ConfigFile.AppSettings.Settings["Theme"].Value.ToLower();
+
+                if (theme == "dark")
+                {
+                    darkToolStripMenuItem_Click(null, null);
+                }
+                else if (theme == "light")
+                {
+                    toolStripMenuItem2_Click(null, null);
+                }
+            }
+
             TimerTick = TimeSpan.FromMilliseconds(10);
             SavedTime = new TimeSpan();
 
@@ -116,15 +146,19 @@ namespace FourJobFiesta
             // Wind
             ContextMenu cmWind = new ContextMenu();
 
+            cmWind.MenuItems.Add("Clear", mcWindItem_Click);
+
             foreach (string str in allJobs)
             {
                 cmWind.MenuItems.Add(str, mcWindItem_Click);
             }
 
             picWind.ContextMenu = cmWind;
-
+            
             // Water
             ContextMenu cmWater = new ContextMenu();
+
+            cmWater.MenuItems.Add("Clear", mcWaterItem_Click);
 
             foreach (string str in allJobs)
             {
@@ -136,6 +170,8 @@ namespace FourJobFiesta
             // Fire
             ContextMenu cmFire = new ContextMenu();
 
+            cmFire.MenuItems.Add("Clear", mcFireItem_Click);
+
             foreach (string str in allJobs)
             {
                 cmFire.MenuItems.Add(str, mcFireItem_Click);
@@ -145,6 +181,8 @@ namespace FourJobFiesta
 
             // Earth
             ContextMenu cmEarth = new ContextMenu();
+
+            cmEarth.MenuItems.Add("Clear", mcEarthItem_Click);
 
             foreach (string str in allJobs)
             {
@@ -161,36 +199,90 @@ namespace FourJobFiesta
 
         private void mcWindItem_Click(object sender, EventArgs e)
         {
-            picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + ((MenuItem)sender).Text);
+            string text = ((MenuItem)sender).Text;
+
+            if (!text.Equals("Clear"))
+            {
+                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + ((MenuItem)sender).Text);
+                lblWindText.Text = text;
+                lblWindText.Show();
+            }
+            else
+            {
+                picWind.ImageLocation = string.Empty;
+                lblWindText.Text = string.Empty;
+                lblWindText.Hide();
+            }
         }
 
         private void mcWaterItem_Click(object sender, EventArgs e)
         {
-            picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + ((MenuItem)sender).Text);
+            string text = ((MenuItem)sender).Text;
+
+            if (!text.Equals("Clear"))
+            {
+                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + ((MenuItem)sender).Text);
+                lblWaterText.Text = text;
+                lblWaterText.Show();
+            }
+            else
+            {
+                picWater.ImageLocation = string.Empty;
+                lblWaterText.Text = string.Empty;
+                lblWaterText.Hide();
+            }
         }
 
         private void mcFireItem_Click(object sender, EventArgs e)
         {
-            picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + ((MenuItem)sender).Text);
+            string text = ((MenuItem)sender).Text;
+
+            if (!text.Equals("Clear"))
+            {
+                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + ((MenuItem)sender).Text);
+                lblFireText.Text = text;
+                lblFireText.Show();
+            }
+            else
+            {
+                picFire.ImageLocation = string.Empty;
+                lblFireText.Text = string.Empty;
+                lblFireText.Hide();
+            }
         }
 
         private void mcEarthItem_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            string text = ((MenuItem)sender).Text;
+
+            if (!text.Equals("Clear"))
             {
-                picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
-            }
-            else
-            {
-                if (((MenuItem)sender).Text == "Mime")
+                if (checkBox1.Checked)
                 {
                     picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
                 }
                 else
                 {
-                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + ((MenuItem)sender).Text);
+                    if (((MenuItem)sender).Text == "Mime")
+                    {
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
+                    }
+                    else
+                    {
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + ((MenuItem)sender).Text);
+                    }
                 }
+
+                lblEarthText.Text = text;
+                lblEarthText.Show();
             }
+            else
+            {
+                picEarth.ImageLocation = string.Empty;
+                lblEarthText.Text = string.Empty;
+                lblEarthText.Hide();
+            }
+
         }
 
         private void butRandomize_Click(object sender, EventArgs e)
@@ -365,14 +457,20 @@ namespace FourJobFiesta
             {
                 case 0:
                     picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + lblRoll.Text);
+                    lblWindText.Text = lblRoll.Text;
+                    lblWindText.Show();
                     break;
 
                 case 1:
                     picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + lblRoll.Text);
+                    lblWaterText.Text = lblRoll.Text;
+                    lblWaterText.Show();
                     break;
 
                 case 2:
                     picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + lblRoll.Text);
+                    lblFireText.Text = lblRoll.Text;
+                    lblFireText.Show();
                     break;
 
                 case 3:
@@ -391,6 +489,9 @@ namespace FourJobFiesta
                             picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + lblRoll.Text);
                         }
                     }
+
+                    lblEarthText.Text = lblRoll.Text;
+                    lblEarthText.Show();
                     break;
 
                 default:
@@ -518,18 +619,26 @@ namespace FourJobFiesta
 
                             case "wind":
                                 picWind.ImageLocation = split[1];
+                                lblWindText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                lblWindText.Show();
                                 break;
 
                             case "water":
                                 picWater.ImageLocation = split[1];
+                                lblWaterText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                lblWaterText.Show();
                                 break;
 
                             case "fire":
                                 picFire.ImageLocation = split[1];
+                                lblFireText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                lblFireText.Show();
                                 break;
 
                             case "earth":
                                 picEarth.ImageLocation = split[1];
+                                lblEarthText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                lblEarthText.Show();
                                 break;
 
                             case "time":
@@ -558,7 +667,15 @@ namespace FourJobFiesta
             picFire.ImageLocation = string.Empty;
             picEarth.ImageLocation = string.Empty;
             lblRoll.Text = string.Empty;
-            
+            lblWindText.Text = string.Empty;
+            lblWindText.Hide();
+            lblWaterText.Text = string.Empty;
+            lblWaterText.Hide();
+            lblFireText.Text = string.Empty;
+            lblFireText.Hide();
+            lblEarthText.Text = string.Empty;
+            lblEarthText.Hide();
+
             sw.Reset();
             SavedTime = new TimeSpan();
             SaveFile = string.Empty;
@@ -581,6 +698,18 @@ namespace FourJobFiesta
             clrTimerText.ShowDialog();
 
             txtTimer.ForeColor = clrTimerText.Color;
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerTextColor"))
+            {
+                Program.ConfigFile.AppSettings.Settings["TimerTextColor"].Value = clrTimerText.Color.Name;
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("TimerTextColor", clrTimerText.Color.Name);
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
         }
 
         private void editBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -590,6 +719,18 @@ namespace FourJobFiesta
             clrTimerText.ShowDialog();
 
             txtTimer.BackColor = clrTimerText.Color;
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerBackgroundColor"))
+            {
+                Program.ConfigFile.AppSettings.Settings["TimerBackgroundColor"].Value = clrTimerText.Color.Name;
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("TimerBackgroundColor", clrTimerText.Color.Name);
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
         }
         
         public void StartStopClick()
@@ -709,6 +850,18 @@ namespace FourJobFiesta
             label3.ForeColor = Color.Black;
             label4.ForeColor = Color.Black;
             checkBox1.ForeColor = Color.Black;
+            
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
+            {
+                Program.ConfigFile.AppSettings.Settings["Theme"].Value = "light";
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("Theme", "light");
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
         }
 
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -719,6 +872,18 @@ namespace FourJobFiesta
             label3.ForeColor = Color.White;
             label4.ForeColor = Color.White;
             checkBox1.ForeColor = Color.White;
+
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
+            {
+                Program.ConfigFile.AppSettings.Settings["Theme"].Value = "dark";
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("Theme", "dark");
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

@@ -49,11 +49,11 @@
             this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.themeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picWind = new System.Windows.Forms.PictureBox();
             this.picWater = new System.Windows.Forms.PictureBox();
             this.picEarth = new System.Windows.Forms.PictureBox();
@@ -67,6 +67,10 @@
             this.btnTmrStart = new System.Windows.Forms.Button();
             this.btnTmrReset = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.lblWindText = new System.Windows.Forms.Label();
+            this.lblWaterText = new System.Windows.Forms.Label();
+            this.lblFireText = new System.Windows.Forms.Label();
+            this.lblEarthText = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
@@ -260,14 +264,6 @@
             this.editShortcutsToolStripMenuItem.Text = "     Edit Shortcuts";
             this.editShortcutsToolStripMenuItem.Click += new System.EventHandler(this.editShortcutsToolStripMenuItem_Click);
             // 
-            // rulesToolStripMenuItem
-            // 
-            this.rulesToolStripMenuItem.Name = "rulesToolStripMenuItem";
-            this.rulesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.rulesToolStripMenuItem.Text = "Rules";
-            this.rulesToolStripMenuItem.Click += new System.EventHandler(this.rulesToolStripMenuItem_Click);
-            // 
             // configToolStripMenuItem
             // 
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -283,14 +279,14 @@
             // 
             this.themeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.themeToolStripMenuItem.Text = "Theme";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(116, 22);
             this.toolStripMenuItem2.Text = "     Light";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -298,9 +294,17 @@
             // 
             this.darkToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.darkToolStripMenuItem.Text = "     Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
+            // 
+            // rulesToolStripMenuItem
+            // 
+            this.rulesToolStripMenuItem.Name = "rulesToolStripMenuItem";
+            this.rulesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.rulesToolStripMenuItem.Text = "Rules";
+            this.rulesToolStripMenuItem.Click += new System.EventHandler(this.rulesToolStripMenuItem_Click);
             // 
             // picWind
             // 
@@ -436,12 +440,64 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // lblWindText
+            // 
+            this.lblWindText.BackColor = System.Drawing.Color.ForestGreen;
+            this.lblWindText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWindText.ForeColor = System.Drawing.Color.White;
+            this.lblWindText.Location = new System.Drawing.Point(219, 237);
+            this.lblWindText.Name = "lblWindText";
+            this.lblWindText.Size = new System.Drawing.Size(235, 34);
+            this.lblWindText.TabIndex = 39;
+            this.lblWindText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblWindText.Visible = false;
+            // 
+            // lblWaterText
+            // 
+            this.lblWaterText.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblWaterText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWaterText.ForeColor = System.Drawing.Color.White;
+            this.lblWaterText.Location = new System.Drawing.Point(475, 237);
+            this.lblWaterText.Name = "lblWaterText";
+            this.lblWaterText.Size = new System.Drawing.Size(235, 34);
+            this.lblWaterText.TabIndex = 40;
+            this.lblWaterText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblWaterText.Visible = false;
+            // 
+            // lblFireText
+            // 
+            this.lblFireText.BackColor = System.Drawing.Color.Maroon;
+            this.lblFireText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFireText.ForeColor = System.Drawing.Color.White;
+            this.lblFireText.Location = new System.Drawing.Point(219, 493);
+            this.lblFireText.Name = "lblFireText";
+            this.lblFireText.Size = new System.Drawing.Size(235, 34);
+            this.lblFireText.TabIndex = 41;
+            this.lblFireText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFireText.Visible = false;
+            // 
+            // lblEarthText
+            // 
+            this.lblEarthText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblEarthText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEarthText.ForeColor = System.Drawing.Color.White;
+            this.lblEarthText.Location = new System.Drawing.Point(475, 493);
+            this.lblEarthText.Name = "lblEarthText";
+            this.lblEarthText.Size = new System.Drawing.Size(235, 34);
+            this.lblEarthText.TabIndex = 42;
+            this.lblEarthText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEarthText.Visible = false;
+            // 
             // FormFourJobFiesta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(724, 631);
+            this.Controls.Add(this.lblEarthText);
+            this.Controls.Add(this.lblFireText);
+            this.Controls.Add(this.lblWaterText);
+            this.Controls.Add(this.lblWindText);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnTmrReset);
             this.Controls.Add(this.btnTmrStart);
@@ -518,6 +574,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem darkToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label lblWindText;
+        private System.Windows.Forms.Label lblWaterText;
+        private System.Windows.Forms.Label lblFireText;
+        private System.Windows.Forms.Label lblEarthText;
     }
 }
 
