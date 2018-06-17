@@ -11,13 +11,6 @@ Saving your current configuration will save your selected crystal, run type, mod
 
 There is a built in timer so those who wish to time their runs do not have to use additional software. The timer is saved and loaded with your current configuration to allow for ease of starting and stopping runs. Text and background color, timer start/stop, and timer reset are editable. The keybinds for controlling the timer will work even when the tool is not selected.
 
-![Current Layout](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot.PNG)
+![Current Layout: Light](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot.PNG)
 
-## Change Log
-
-Commit 8
-https://github.com/CBurlison/FourJobFiesta/commit/d37304303621a98536cae7d19aeba383f161d35a
-
-Added key latching to control the timer.
-
-The ability to change if it will only work while active and key friendly names will be added in a future revision.
+![Current Layout: Dark](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot2.PNG)
