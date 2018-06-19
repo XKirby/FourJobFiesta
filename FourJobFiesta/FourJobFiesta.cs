@@ -757,16 +757,19 @@ namespace FourJobFiesta
         
         public void StartStopClick()
         {
-            if (btnTmrStart.Text == "Start")
+            if (!checkBox2.Checked)
             {
-                sw.Start();
-                btnTmrStart.Text = "Stop";
-            }
-            else
-            {
-                SavedTime = SavedTime + sw.Elapsed;
-                sw.Reset();
-                btnTmrStart.Text = "Start";
+                if (btnTmrStart.Text == "Start")
+                {
+                    sw.Start();
+                    btnTmrStart.Text = "Stop";
+                }
+                else
+                {
+                    SavedTime = SavedTime + sw.Elapsed;
+                    sw.Reset();
+                    btnTmrStart.Text = "Start";
+                }
             }
         }
 
@@ -774,7 +777,6 @@ namespace FourJobFiesta
         {
             StartStopClick();
         }
-        
         
         public void ResetClick()
         {
@@ -872,6 +874,9 @@ namespace FourJobFiesta
             label3.ForeColor = Color.Black;
             label4.ForeColor = Color.Black;
             checkBox1.ForeColor = Color.Black;
+            checkBox2.ForeColor = Color.Black;
+            menuStrip1.BackColor = Color.WhiteSmoke;
+            menuStrip1.ForeColor = Color.Black;
             
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
             {
@@ -894,6 +899,9 @@ namespace FourJobFiesta
             label3.ForeColor = Color.White;
             label4.ForeColor = Color.White;
             checkBox1.ForeColor = Color.White;
+            checkBox2.ForeColor = Color.White;
+            menuStrip1.BackColor = Color.Black;
+            menuStrip1.ForeColor = Color.White;
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
             {
@@ -977,6 +985,8 @@ namespace FourJobFiesta
             
             btnTmrStart.Location = new Point(120, 432);
             btnTmrReset.Location = new Point(120, 477);
+
+            checkBox2.Location = new Point(10, 436);
         }
 
         public void MakeVertical()
@@ -996,6 +1006,31 @@ namespace FourJobFiesta
 
             btnTmrStart.Location = new Point(129, 852);
             btnTmrReset.Location = new Point(10, 852);
+
+            checkBox2.Location = new Point(10, 832);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                if (btnTmrStart.Text == "Stop")
+                {
+                    SavedTime = SavedTime + sw.Elapsed;
+                    sw.Reset();
+                    btnTmrStart.Text = "Start";
+                }
+
+                txtTimer.Hide();
+                btnTmrStart.Hide();
+                btnTmrReset.Hide();
+            }
+            else
+            {
+                txtTimer.Show();
+                btnTmrStart.Show();
+                btnTmrReset.Show();
+            }
         }
     }
 }
