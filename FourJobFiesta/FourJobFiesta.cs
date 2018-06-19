@@ -780,12 +780,15 @@ namespace FourJobFiesta
         
         public void ResetClick()
         {
-            if (MessageBox.Show("Are you sure you want to reset the timer?", "Reset Timer", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (!checkBox2.Checked)
             {
-                sw.Reset();
-                SavedTime = new TimeSpan();
-                txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
-                btnTmrStart.Text = "Start";
+                if (MessageBox.Show("Are you sure you want to reset the timer?", "Reset Timer", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    sw.Reset();
+                    SavedTime = new TimeSpan();
+                    txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
+                    btnTmrStart.Text = "Start";
+                }
             }
         }
 
