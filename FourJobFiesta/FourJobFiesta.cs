@@ -175,6 +175,11 @@ namespace FourJobFiesta
                 cmWind.MenuItems.Add(str, mcWindItem_Click);
             }
 
+            cmWind.MenuItems.Add("Cannoneer", mcWindItem_Click);
+            cmWind.MenuItems.Add("Necromancer", mcWindItem_Click);
+            cmWind.MenuItems.Add("Oracle", mcWindItem_Click);
+            cmWind.MenuItems.Add("Gladiator", mcWindItem_Click);
+
             picWind.ContextMenu = cmWind;
             
             // Water
@@ -186,6 +191,11 @@ namespace FourJobFiesta
             {
                 cmWater.MenuItems.Add(str, mcWaterItem_Click);
             }
+
+            cmWater.MenuItems.Add("Cannoneer", mcWaterItem_Click);
+            cmWater.MenuItems.Add("Necromancer", mcWaterItem_Click);
+            cmWater.MenuItems.Add("Oracle", mcWaterItem_Click);
+            cmWater.MenuItems.Add("Gladiator", mcWaterItem_Click);
 
             picWater.ContextMenu = cmWater;
 
@@ -199,6 +209,11 @@ namespace FourJobFiesta
                 cmFire.MenuItems.Add(str, mcFireItem_Click);
             }
 
+            cmFire.MenuItems.Add("Cannoneer", mcFireItem_Click);
+            cmFire.MenuItems.Add("Necromancer", mcFireItem_Click);
+            cmFire.MenuItems.Add("Oracle", mcFireItem_Click);
+            cmFire.MenuItems.Add("Gladiator", mcFireItem_Click);
+
             picFire.ContextMenu = cmFire;
 
             // Earth
@@ -210,6 +225,11 @@ namespace FourJobFiesta
             {
                 cmEarth.MenuItems.Add(str, mcEarthItem_Click);
             }
+
+            cmEarth.MenuItems.Add("Cannoneer", mcEarthItem_Click);
+            cmEarth.MenuItems.Add("Necromancer", mcEarthItem_Click);
+            cmEarth.MenuItems.Add("Oracle", mcEarthItem_Click);
+            cmEarth.MenuItems.Add("Gladiator", mcEarthItem_Click);
 
             picEarth.ContextMenu = cmEarth;
         }
@@ -285,7 +305,7 @@ namespace FourJobFiesta
                 }
                 else
                 {
-                    if (((MenuItem)sender).Text == "Mime")
+                    if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
                     {
                         picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
                     }
@@ -502,7 +522,7 @@ namespace FourJobFiesta
                     }
                     else
                     {
-                        if (lblRoll.Text == "Mime")
+                        if (lblRoll.Text == "Mime" || lblRoll.Text == "Cannoneer" || lblRoll.Text == "Necromancer" || lblRoll.Text == "Oracle" || lblRoll.Text == "Gladiator")
                         {
                             picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + lblRoll.Text);
                         }
@@ -929,7 +949,8 @@ namespace FourJobFiesta
                 }
                 else
                 {
-                    if (!picEarth.ImageLocation.Contains("Krile-Mime"))
+                    if (!picEarth.ImageLocation.Contains("Krile-Mime") && !picEarth.ImageLocation.Contains("Krile-Cannoneer") && !picEarth.ImageLocation.Contains("Krile-Necromancer")
+                        && !picEarth.ImageLocation.Contains("Krile-Oracle") && !picEarth.ImageLocation.Contains("Krile-Gladiator"))
                     {
                         picEarth.ImageLocation = picEarth.ImageLocation.Replace("Krile-", "Galuf-");
                     }
