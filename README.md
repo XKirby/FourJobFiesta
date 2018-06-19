@@ -14,3 +14,5 @@ There is a built in timer so those who wish to time their runs do not have to us
 ![Current Layout: Light](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot.PNG)
 
 ![Current Layout: Dark](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot2.PNG)
+
+![Current Layout: Vertical](https://github.com/CBurlison/FourJobFiesta/blob/master/FourJobFiesta/Images/Screenshot3.PNG)
