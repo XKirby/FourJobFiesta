@@ -138,10 +138,32 @@ namespace FourJobFiesta
             SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
                 Program.ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
 
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
+            {
+                string o = Program.ConfigFile.AppSettings.Settings["orientation"].Value.ToLower();
+
+                if (o == "vertical")
+                {
+                    MakeVertical();
+                }
+                else
+                {
+                    MakeSquare();
+                }
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("orientation", "square");
+                MakeSquare();
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
+
             Program.FinishInit(this);
         }
         
-        private void AddContextMenus()
+        public void AddContextMenus()
         {
             // Wind
             ContextMenu cmWind = new ContextMenu();
@@ -192,12 +214,12 @@ namespace FourJobFiesta
             picEarth.ContextMenu = cmEarth;
         }
         
-        private void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             txtTimer.Text = (SavedTime + sw.Elapsed).ToString(TIMER_FORMAT);
         }
 
-        private void mcWindItem_Click(object sender, EventArgs e)
+        public void mcWindItem_Click(object sender, EventArgs e)
         {
             string text = ((MenuItem)sender).Text;
 
@@ -215,7 +237,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void mcWaterItem_Click(object sender, EventArgs e)
+        public void mcWaterItem_Click(object sender, EventArgs e)
         {
             string text = ((MenuItem)sender).Text;
 
@@ -233,7 +255,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void mcFireItem_Click(object sender, EventArgs e)
+        public void mcFireItem_Click(object sender, EventArgs e)
         {
             string text = ((MenuItem)sender).Text;
 
@@ -251,7 +273,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void mcEarthItem_Click(object sender, EventArgs e)
+        public void mcEarthItem_Click(object sender, EventArgs e)
         {
             string text = ((MenuItem)sender).Text;
 
@@ -285,7 +307,7 @@ namespace FourJobFiesta
 
         }
 
-        private void butRandomize_Click(object sender, EventArgs e)
+        public void butRandomize_Click(object sender, EventArgs e)
         {
             if (comboMod.SelectedIndex == 2 && comboRules.Text != "Classic") // chaos
             {
@@ -504,7 +526,7 @@ namespace FourJobFiesta
             lblRoll.Text = jobs[r.Next(min, max)];
         }
 
-        private void FormFourJobFiesta_Load(object sender, EventArgs e)
+        public void FormFourJobFiesta_Load(object sender, EventArgs e)
         {
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("DefaultSave") && File.Exists(Program.ConfigFile.AppSettings.Settings["DefaultSave"].Value))
             {
@@ -512,7 +534,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        public void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string[] line = {
                 "crystal," + comboCrystal.SelectedIndex.ToString(),
@@ -565,7 +587,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        public void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Open Saved Run";
@@ -587,7 +609,7 @@ namespace FourJobFiesta
             ConfigurationManager.RefreshSection("userSettings");
         }
 
-        private void LoadSave(string path)
+        public void LoadSave(string path)
         {
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
@@ -657,7 +679,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        public void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             comboCrystal.SelectedIndex = -1;
             comboRules.SelectedIndex = -1;
@@ -681,17 +703,17 @@ namespace FourJobFiesta
             SaveFile = string.Empty;
         }
 
-        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        public void rulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://fourjobfiesta.com/help.php?s=c#");
+            Process.Start("http://fourjobfiesta.com/help.php");
         }
 
-        private void closeAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void closeAltF4ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void editTextColorToolStripMenuItem_Click(object sender, EventArgs e)
+        public void editTextColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clrTimerText.AnyColor = true;
             clrTimerText.Color = txtTimer.ForeColor;
@@ -712,7 +734,7 @@ namespace FourJobFiesta
             ConfigurationManager.RefreshSection("userSettings");
         }
 
-        private void editBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+        public void editBackgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clrTimerText.AnyColor = true;
             clrTimerText.Color = txtTimer.BackColor;
@@ -748,7 +770,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void btnTmrStart_Click(object sender, EventArgs e)
+        public void btnTmrStart_Click(object sender, EventArgs e)
         {
             StartStopClick();
         }
@@ -765,22 +787,22 @@ namespace FourJobFiesta
             }
         }
 
-        private void btnTmrReset_Click(object sender, EventArgs e)
+        public void btnTmrReset_Click(object sender, EventArgs e)
         {
             ResetClick();
         }
 
-        private void startStopToolStripMenuItem_Click(object sender, EventArgs e)
+        public void startStopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnTmrStart_Click(sender, e);
         }
 
-        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        public void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnTmrReset_Click(sender, e);
         }
 
-        private void editShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void editShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TimerShortcuts ts = new TimerShortcuts();
             ts.Show();
@@ -792,7 +814,7 @@ namespace FourJobFiesta
             resetToolStripMenuItem.ShortcutKeyDisplayString = reset;
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string[] line = {
                 "crystal," + comboCrystal.SelectedIndex.ToString(),
@@ -842,7 +864,7 @@ namespace FourJobFiesta
             }
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        public void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             BackColor = Color.WhiteSmoke;
             label1.ForeColor = Color.Black;
@@ -864,7 +886,7 @@ namespace FourJobFiesta
             ConfigurationManager.RefreshSection("userSettings");
         }
 
-        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        public void darkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BackColor = Color.Black;
             label1.ForeColor = Color.White;
@@ -886,7 +908,7 @@ namespace FourJobFiesta
             ConfigurationManager.RefreshSection("userSettings");
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(picEarth.ImageLocation))
             {
@@ -902,6 +924,78 @@ namespace FourJobFiesta
                     }
                 }
             }
+        }
+
+        private void squareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
+            {
+                Program.ConfigFile.AppSettings.Settings["orientation"].Value = "square";
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("orientation", "square");
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
+
+            MakeSquare();
+        }
+
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
+            {
+                Program.ConfigFile.AppSettings.Settings["orientation"].Value = "vertical";
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("orientation", "vertical");
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
+
+            MakeVertical();
+        }
+
+        public void MakeSquare()
+        {
+            Size = new Size(630, 542);
+            
+            picWater.Location = new Point(410, 27);
+            lblWaterText.Location = new Point(419, 184);
+            picFire.Location = new Point(210, 226);
+            lblFireText.Location = new Point(219, 383);
+            picEarth.Location = new Point(410, 226);
+            lblEarthText.Location = new Point(419, 383);
+
+            txtTimer.Location = new Point(210, 432);
+            txtTimer.Size = new Size(400, 68);
+            txtTimer.Font = new Font(txtTimer.Font.FontFamily, 40, txtTimer.Font.Style, txtTimer.Font.Unit, txtTimer.Font.GdiCharSet, txtTimer.Font.GdiVerticalFont);
+            
+            btnTmrStart.Location = new Point(120, 432);
+            btnTmrReset.Location = new Point(120, 477);
+        }
+
+        public void MakeVertical()
+        {
+            Size = new Size(431, 918);
+            
+            picWater.Location = new Point(210, 226);
+            lblWaterText.Location = new Point(219, 383);
+            picFire.Location = new Point(210, 425);
+            lblFireText.Location = new Point(219, 582);
+            picEarth.Location = new Point(210, 624);
+            lblEarthText.Location = new Point(219, 781);
+
+            txtTimer.Location = new Point(210, 830);
+            txtTimer.Size = new Size(200, 45);
+            txtTimer.Font = new Font(txtTimer.Font.FontFamily, 25, txtTimer.Font.Style, txtTimer.Font.Unit, txtTimer.Font.GdiCharSet, txtTimer.Font.GdiVerticalFont);
+
+            btnTmrStart.Location = new Point(129, 852);
+            btnTmrReset.Location = new Point(10, 852);
         }
     }
 }

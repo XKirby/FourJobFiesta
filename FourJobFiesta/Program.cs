@@ -16,7 +16,7 @@ namespace FourJobFiesta
         public static Keys StartStopKey { get; set; }
         public static Keys ResetKey { get; set; }
         public static Configuration ConfigFile { get; set; }
-
+        
         // key friendly name, value enum value
         public static ConcurrentDictionary<string, string> KeyBindMap { get; set; }
 
@@ -67,7 +67,7 @@ namespace FourJobFiesta
             MainForm.SetKeybinds(ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
                 ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
         }
-
+        
         private static void SetKeyBindMap()
         {
             KeyBindMap = new ConcurrentDictionary<string, string>();

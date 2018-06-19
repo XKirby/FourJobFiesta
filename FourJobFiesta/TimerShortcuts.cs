@@ -32,9 +32,9 @@ namespace FourJobFiesta
         {
             Program.StartStopKey = (Keys)Enum.Parse(typeof(Keys), comboStartStop.SelectedItem.ToString());
             Program.ResetKey = (Keys)Enum.Parse(typeof(Keys), comboReset.SelectedItem.ToString());
-
+            
             Program.MainForm.SetKeybinds(comboStartStop.SelectedItem.ToString(), comboReset.SelectedItem.ToString());
-
+            
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("StartStopTimerButton"))
             {
                 Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value = comboStartStop.SelectedItem.ToString();

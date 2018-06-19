@@ -71,6 +71,9 @@
             this.lblWaterText = new System.Windows.Forms.Label();
             this.lblFireText = new System.Windows.Forms.Label();
             this.lblEarthText = new System.Windows.Forms.Label();
+            this.layoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.squareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
@@ -140,7 +143,7 @@
             this.rulesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(724, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(614, 24);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -269,7 +272,10 @@
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.themeToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.darkToolStripMenuItem});
+            this.darkToolStripMenuItem,
+            this.layoutToolStripMenuItem,
+            this.squareToolStripMenuItem,
+            this.verticalToolStripMenuItem});
             this.configToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
             this.configToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
@@ -279,14 +285,14 @@
             // 
             this.themeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.themeToolStripMenuItem.Text = "Theme";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(116, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "     Light";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -294,7 +300,7 @@
             // 
             this.darkToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.darkToolStripMenuItem.Text = "     Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -312,7 +318,7 @@
             this.picWind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picWind.Location = new System.Drawing.Point(210, 27);
             this.picWind.Name = "picWind";
-            this.picWind.Size = new System.Drawing.Size(255, 255);
+            this.picWind.Size = new System.Drawing.Size(200, 200);
             this.picWind.TabIndex = 25;
             this.picWind.TabStop = false;
             // 
@@ -320,9 +326,9 @@
             // 
             this.picWater.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picWater.BackgroundImage")));
             this.picWater.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picWater.Location = new System.Drawing.Point(464, 27);
+            this.picWater.Location = new System.Drawing.Point(410, 27);
             this.picWater.Name = "picWater";
-            this.picWater.Size = new System.Drawing.Size(255, 255);
+            this.picWater.Size = new System.Drawing.Size(200, 200);
             this.picWater.TabIndex = 26;
             this.picWater.TabStop = false;
             // 
@@ -330,9 +336,9 @@
             // 
             this.picEarth.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEarth.BackgroundImage")));
             this.picEarth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEarth.Location = new System.Drawing.Point(464, 281);
+            this.picEarth.Location = new System.Drawing.Point(410, 226);
             this.picEarth.Name = "picEarth";
-            this.picEarth.Size = new System.Drawing.Size(255, 255);
+            this.picEarth.Size = new System.Drawing.Size(200, 200);
             this.picEarth.TabIndex = 28;
             this.picEarth.TabStop = false;
             // 
@@ -340,9 +346,9 @@
             // 
             this.picFire.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picFire.BackgroundImage")));
             this.picFire.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFire.Location = new System.Drawing.Point(210, 281);
+            this.picFire.Location = new System.Drawing.Point(210, 226);
             this.picFire.Name = "picFire";
-            this.picFire.Size = new System.Drawing.Size(255, 255);
+            this.picFire.Size = new System.Drawing.Size(200, 200);
             this.picFire.TabIndex = 27;
             this.picFire.TabStop = false;
             // 
@@ -396,13 +402,14 @@
             // txtTimer
             // 
             this.txtTimer.BackColor = System.Drawing.Color.Black;
-            this.txtTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimer.ForeColor = System.Drawing.Color.White;
-            this.txtTimer.Location = new System.Drawing.Point(210, 542);
+            this.txtTimer.Location = new System.Drawing.Point(210, 432);
             this.txtTimer.Name = "txtTimer";
             this.txtTimer.ReadOnly = true;
-            this.txtTimer.Size = new System.Drawing.Size(509, 83);
+            this.txtTimer.Size = new System.Drawing.Size(400, 68);
             this.txtTimer.TabIndex = 34;
+            this.txtTimer.Text = "00:00:00.00";
             this.txtTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // clrTimerText
@@ -411,7 +418,7 @@
             // 
             // btnTmrStart
             // 
-            this.btnTmrStart.Location = new System.Drawing.Point(120, 542);
+            this.btnTmrStart.Location = new System.Drawing.Point(120, 432);
             this.btnTmrStart.Name = "btnTmrStart";
             this.btnTmrStart.Size = new System.Drawing.Size(75, 23);
             this.btnTmrStart.TabIndex = 35;
@@ -421,7 +428,7 @@
             // 
             // btnTmrReset
             // 
-            this.btnTmrReset.Location = new System.Drawing.Point(120, 602);
+            this.btnTmrReset.Location = new System.Drawing.Point(120, 477);
             this.btnTmrReset.Name = "btnTmrReset";
             this.btnTmrReset.Size = new System.Drawing.Size(75, 23);
             this.btnTmrReset.TabIndex = 37;
@@ -445,9 +452,9 @@
             this.lblWindText.BackColor = System.Drawing.Color.ForestGreen;
             this.lblWindText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWindText.ForeColor = System.Drawing.Color.White;
-            this.lblWindText.Location = new System.Drawing.Point(219, 237);
+            this.lblWindText.Location = new System.Drawing.Point(219, 183);
             this.lblWindText.Name = "lblWindText";
-            this.lblWindText.Size = new System.Drawing.Size(235, 34);
+            this.lblWindText.Size = new System.Drawing.Size(182, 34);
             this.lblWindText.TabIndex = 39;
             this.lblWindText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblWindText.Visible = false;
@@ -457,9 +464,9 @@
             this.lblWaterText.BackColor = System.Drawing.Color.MidnightBlue;
             this.lblWaterText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWaterText.ForeColor = System.Drawing.Color.White;
-            this.lblWaterText.Location = new System.Drawing.Point(475, 237);
+            this.lblWaterText.Location = new System.Drawing.Point(419, 184);
             this.lblWaterText.Name = "lblWaterText";
-            this.lblWaterText.Size = new System.Drawing.Size(235, 34);
+            this.lblWaterText.Size = new System.Drawing.Size(182, 34);
             this.lblWaterText.TabIndex = 40;
             this.lblWaterText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblWaterText.Visible = false;
@@ -469,9 +476,9 @@
             this.lblFireText.BackColor = System.Drawing.Color.Maroon;
             this.lblFireText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFireText.ForeColor = System.Drawing.Color.White;
-            this.lblFireText.Location = new System.Drawing.Point(219, 493);
+            this.lblFireText.Location = new System.Drawing.Point(219, 383);
             this.lblFireText.Name = "lblFireText";
-            this.lblFireText.Size = new System.Drawing.Size(235, 34);
+            this.lblFireText.Size = new System.Drawing.Size(182, 34);
             this.lblFireText.TabIndex = 41;
             this.lblFireText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFireText.Visible = false;
@@ -481,19 +488,40 @@
             this.lblEarthText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.lblEarthText.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEarthText.ForeColor = System.Drawing.Color.White;
-            this.lblEarthText.Location = new System.Drawing.Point(475, 493);
+            this.lblEarthText.Location = new System.Drawing.Point(419, 383);
             this.lblEarthText.Name = "lblEarthText";
-            this.lblEarthText.Size = new System.Drawing.Size(235, 34);
+            this.lblEarthText.Size = new System.Drawing.Size(182, 34);
             this.lblEarthText.TabIndex = 42;
             this.lblEarthText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEarthText.Visible = false;
+            // 
+            // layoutToolStripMenuItem
+            // 
+            this.layoutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.layoutToolStripMenuItem.Name = "layoutToolStripMenuItem";
+            this.layoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.layoutToolStripMenuItem.Text = "Layout";
+            // 
+            // squareToolStripMenuItem
+            // 
+            this.squareToolStripMenuItem.Name = "squareToolStripMenuItem";
+            this.squareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.squareToolStripMenuItem.Text = "     Square";
+            this.squareToolStripMenuItem.Click += new System.EventHandler(this.squareToolStripMenuItem_Click);
+            // 
+            // verticalToolStripMenuItem
+            // 
+            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verticalToolStripMenuItem.Text = "     Vertical";
+            this.verticalToolStripMenuItem.Click += new System.EventHandler(this.verticalToolStripMenuItem_Click);
             // 
             // FormFourJobFiesta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(724, 631);
+            this.ClientSize = new System.Drawing.Size(614, 503);
             this.Controls.Add(this.lblEarthText);
             this.Controls.Add(this.lblFireText);
             this.Controls.Add(this.lblWaterText);
@@ -578,6 +606,9 @@
         private System.Windows.Forms.Label lblWaterText;
         private System.Windows.Forms.Label lblFireText;
         private System.Windows.Forms.Label lblEarthText;
+        private System.Windows.Forms.ToolStripMenuItem layoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem squareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
     }
 }
 
