@@ -33,28 +33,61 @@ namespace FourJobFiesta
         public List<string> classicJobs = new List<string>();
         public List<string> sevenFiftyJobs = new List<string>();
         public List<string> no750Jobs = new List<string>();
+        public List<string> forbidden = new List<string>();
 
         public const string IMG_FORMAT_STR = "Images/{0}.png";
         public const string TIMER_FORMAT = @"hh\:mm\:ss\.ff";
+        public const string VOID = "Void";
 
         public FormFourJobFiesta()
         {
             InitializeComponent();
+            
+            txtTimer.BackColor = Color.Black;
+            txtTimer.ForeColor = Color.White;
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerBackgroundColor"))
             {
                 string color = Program.ConfigFile.AppSettings.Settings["TimerBackgroundColor"].Value;
 
-                if (!string.IsNullOrEmpty(color))
-                    txtTimer.BackColor = Color.FromName(color);
+                try
+                {
+                    if (!string.IsNullOrEmpty(color) && color.Length > 2 && color.StartsWith("ff"))
+                        txtTimer.BackColor = ColorTranslator.FromHtml("#" + color.Remove(0, 2));
+                }
+                catch (Exception) { }
+
+                if (txtTimer.BackColor.Name != color)
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(color))
+                            txtTimer.BackColor = Color.FromName(color);
+                    }
+                    catch (Exception) { }
+                }
             }
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerTextColor"))
             {
                 string color = Program.ConfigFile.AppSettings.Settings["TimerTextColor"].Value;
 
-                if (!string.IsNullOrEmpty(color))
-                    txtTimer.ForeColor = Color.FromName(color);
+                try
+                {
+                    if (!string.IsNullOrEmpty(color) && color.Length > 2 && color.StartsWith("ff"))
+                        txtTimer.ForeColor = ColorTranslator.FromHtml("#" + color.Remove(0, 2));
+                }
+                catch (Exception) { }
+
+                if (txtTimer.ForeColor.Name != color)
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(color))
+                            txtTimer.ForeColor = Color.FromName(color);
+                    }
+                    catch (Exception) { }
+                }
             }
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
@@ -134,6 +167,11 @@ namespace FourJobFiesta
             no750Jobs.Add("Samurai");
             no750Jobs.Add("Mime");
 
+            forbidden.Add("Cannoneer");
+            forbidden.Add("Necromancer");
+            forbidden.Add("Oracle");
+            forbidden.Add("Gladiator");
+            
             AddContextMenus();
             SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
                 Program.ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
@@ -145,6 +183,10 @@ namespace FourJobFiesta
                 if (o == "vertical")
                 {
                     MakeVertical();
+                }
+                else if (o == "horizontal")
+                {
+                    MakeHorizontal();
                 }
                 else
                 {
@@ -179,6 +221,7 @@ namespace FourJobFiesta
             cmWind.MenuItems.Add("Necromancer", mcWindItem_Click);
             cmWind.MenuItems.Add("Oracle", mcWindItem_Click);
             cmWind.MenuItems.Add("Gladiator", mcWindItem_Click);
+            cmWind.MenuItems.Add(VOID, mcWindItem_Click);
 
             picWind.ContextMenu = cmWind;
             
@@ -196,6 +239,7 @@ namespace FourJobFiesta
             cmWater.MenuItems.Add("Necromancer", mcWaterItem_Click);
             cmWater.MenuItems.Add("Oracle", mcWaterItem_Click);
             cmWater.MenuItems.Add("Gladiator", mcWaterItem_Click);
+            cmWater.MenuItems.Add(VOID, mcWaterItem_Click);
 
             picWater.ContextMenu = cmWater;
 
@@ -213,6 +257,7 @@ namespace FourJobFiesta
             cmFire.MenuItems.Add("Necromancer", mcFireItem_Click);
             cmFire.MenuItems.Add("Oracle", mcFireItem_Click);
             cmFire.MenuItems.Add("Gladiator", mcFireItem_Click);
+            cmFire.MenuItems.Add(VOID, mcFireItem_Click);
 
             picFire.ContextMenu = cmFire;
 
@@ -230,6 +275,7 @@ namespace FourJobFiesta
             cmEarth.MenuItems.Add("Necromancer", mcEarthItem_Click);
             cmEarth.MenuItems.Add("Oracle", mcEarthItem_Click);
             cmEarth.MenuItems.Add("Gladiator", mcEarthItem_Click);
+            cmEarth.MenuItems.Add(VOID, mcEarthItem_Click);
 
             picEarth.ContextMenu = cmEarth;
         }
@@ -243,9 +289,15 @@ namespace FourJobFiesta
         {
             string text = ((MenuItem)sender).Text;
 
-            if (!text.Equals("Clear"))
+            if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + ((MenuItem)sender).Text);
+                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + text);
+                lblWindText.Text = text;
+                lblWindText.Show();
+            }
+            else if (text.Equals(VOID))
+            {
+                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
                 lblWindText.Text = text;
                 lblWindText.Show();
             }
@@ -261,9 +313,15 @@ namespace FourJobFiesta
         {
             string text = ((MenuItem)sender).Text;
 
-            if (!text.Equals("Clear"))
+            if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + ((MenuItem)sender).Text);
+                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + text);
+                lblWaterText.Text = text;
+                lblWaterText.Show();
+            }
+            else if (text.Equals(VOID))
+            {
+                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
                 lblWaterText.Text = text;
                 lblWaterText.Show();
             }
@@ -279,9 +337,15 @@ namespace FourJobFiesta
         {
             string text = ((MenuItem)sender).Text;
 
-            if (!text.Equals("Clear"))
+            if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + ((MenuItem)sender).Text);
+                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + text);
+                lblFireText.Text = text;
+                lblFireText.Show();
+            }
+            else if (text.Equals(VOID))
+            {
+                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
                 lblFireText.Text = text;
                 lblFireText.Show();
             }
@@ -297,24 +361,30 @@ namespace FourJobFiesta
         {
             string text = ((MenuItem)sender).Text;
 
-            if (!text.Equals("Clear"))
+            if (!text.Equals("Clear") && !text.Equals(VOID))
             {
                 if (checkBox1.Checked)
                 {
-                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
+                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
                 }
                 else
                 {
                     if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + ((MenuItem)sender).Text);
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
                     }
                     else
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + ((MenuItem)sender).Text);
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + text);
                     }
                 }
 
+                lblEarthText.Text = text;
+                lblEarthText.Show();
+            }
+            else if (text.Equals(VOID))
+            {
+                picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
                 lblEarthText.Text = text;
                 lblEarthText.Show();
             }
@@ -329,20 +399,33 @@ namespace FourJobFiesta
 
         public void butRandomize_Click(object sender, EventArgs e)
         {
-            if (comboMod.SelectedIndex == 2 && comboRules.Text != "Classic") // chaos
+            string text = string.Empty;
+
+            if (comboRules.Text == "Forbidden")
+            {
+                if (comboCrystal.Text != "Earth")
+                {
+                    text = allJobs[r.Next(allJobs.Count - 2)];
+                }
+                else if(comboCrystal.Text == "Earth")
+                {
+                    text = forbidden[r.Next(forbidden.Count)];
+                }
+            }
+            else if (comboMod.SelectedIndex == 2 && comboRules.Text != "Classic") // chaos
             {
                 switch (comboRules.Text)
                 {
                     case "Team 750":
-                        lblRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count - 1)];
+                        text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count - 1)];
                         break;
 
                     case "Team No 750":
-                        lblRoll.Text = no750Jobs[r.Next(no750Jobs.Count - 1)];
+                        text = no750Jobs[r.Next(no750Jobs.Count - 1)];
                         break;
 
                     default:
-                        lblRoll.Text = allJobs[r.Next(allJobs.Count - 2)];
+                        text = allJobs[r.Next(allJobs.Count - 2)];
                         break;
                 }
             }
@@ -351,15 +434,15 @@ namespace FourJobFiesta
                 switch (comboRules.Text)
                 {
                     case "Team 750":
-                        lblRoll.Text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count)];
+                        text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count)];
                         break;
 
                     case "Team No 750":
-                        lblRoll.Text = no750Jobs[r.Next(no750Jobs.Count)];
+                        text = no750Jobs[r.Next(no750Jobs.Count)];
                         break;
 
                     default:
-                        lblRoll.Text = allJobs[r.Next(allJobs.Count)];
+                        text = allJobs[r.Next(allJobs.Count)];
                         break;
                 }
             }
@@ -371,16 +454,16 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-                                rollJob(allJobs, 0, 6);
+                                text = rollJob(allJobs, 0, 6);
                                 break;
                             case "Team 750":
-                                rollJob(sevenFiftyJobs, 0, 3);
+                                text = rollJob(sevenFiftyJobs, 0, 3);
                                 break;
                             case "Team No 750":
-                                rollJob(no750Jobs, 0, 3);
+                                text = rollJob(no750Jobs, 0, 3);
                                 break;
                             case "Classic":
-                                rollJob(classicJobs, 0, 5);
+                                text = rollJob(classicJobs, 0, 5);
                                 break;
                         }
                         break;
@@ -395,7 +478,7 @@ namespace FourJobFiesta
                                 else
                                     min = 6;
 
-                                rollJob(allJobs, min, 11);
+                                text = rollJob(allJobs, min, 11);
                                 break;
                             case "Team 750":
 
@@ -404,7 +487,7 @@ namespace FourJobFiesta
                                 else
                                     min = 3;
 
-                                rollJob(sevenFiftyJobs, min, 6);
+                                text = rollJob(sevenFiftyJobs, min, 6);
                                 break;
                             case "Team No 750":
 
@@ -413,10 +496,10 @@ namespace FourJobFiesta
                                 else
                                     min = 3;
 
-                                rollJob(no750Jobs, min, 6);
+                                text = rollJob(no750Jobs, min, 6);
                                 break;
                             case "Classic":
-                                rollJob(classicJobs, 0, 6);
+                                text = rollJob(classicJobs, 0, 6);
                                 break;
                         }
                         break;
@@ -431,7 +514,7 @@ namespace FourJobFiesta
                                 else
                                     min = 11;
 
-                                rollJob(allJobs, min, 16);
+                                text = rollJob(allJobs, min, 16);
                                 break;
                             case "Team 750":
 
@@ -440,7 +523,7 @@ namespace FourJobFiesta
                                 else
                                     min = 6;
 
-                                rollJob(sevenFiftyJobs, min, 8);
+                                text = rollJob(sevenFiftyJobs, min, 8);
                                 break;
                             case "Team No 750":
 
@@ -449,10 +532,10 @@ namespace FourJobFiesta
                                 else
                                     min = 6;
 
-                                rollJob(no750Jobs, min, 8);
+                                text = rollJob(no750Jobs, min, 8);
                                 break;
                             case "Classic":
-                                rollJob(classicJobs, 0, 6);
+                                text = rollJob(classicJobs, 0, 6);
                                 break;
                         }
                         break;
@@ -467,7 +550,7 @@ namespace FourJobFiesta
                                 else
                                     min = 16;
 
-                                rollJob(allJobs, min, 20);
+                                text = rollJob(allJobs, min, 20);
                                 break;
                             case "Team 750":
 
@@ -476,7 +559,7 @@ namespace FourJobFiesta
                                 else
                                     min = 8;
 
-                                rollJob(sevenFiftyJobs, min, 10);
+                                text = rollJob(sevenFiftyJobs, min, 10);
                                 break;
                             case "Team No 750":
 
@@ -485,10 +568,10 @@ namespace FourJobFiesta
                                 else
                                     min = 8;
 
-                                rollJob(no750Jobs, min, 10);
+                                text = rollJob(no750Jobs, min, 10);
                                 break;
                             case "Classic":
-                                rollJob(classicJobs, 0, 6);
+                                text = rollJob(classicJobs, 0, 6);
                                 break;
                         }
                         break;
@@ -498,41 +581,41 @@ namespace FourJobFiesta
             switch (comboCrystal.SelectedIndex)
             {
                 case 0:
-                    picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + lblRoll.Text);
-                    lblWindText.Text = lblRoll.Text;
+                    picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + text);
+                    lblWindText.Text = text;
                     lblWindText.Show();
                     break;
 
                 case 1:
-                    picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + lblRoll.Text);
-                    lblWaterText.Text = lblRoll.Text;
+                    picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + text);
+                    lblWaterText.Text = text;
                     lblWaterText.Show();
                     break;
 
                 case 2:
-                    picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + lblRoll.Text);
-                    lblFireText.Text = lblRoll.Text;
+                    picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + text);
+                    lblFireText.Text = text;
                     lblFireText.Show();
                     break;
 
                 case 3:
                     if (checkBox1.Checked)
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + lblRoll.Text);
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
                     }
                     else
                     {
-                        if (lblRoll.Text == "Mime" || lblRoll.Text == "Cannoneer" || lblRoll.Text == "Necromancer" || lblRoll.Text == "Oracle" || lblRoll.Text == "Gladiator")
+                        if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
                         {
-                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + lblRoll.Text);
+                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
                         }
                         else
                         {
-                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + lblRoll.Text);
+                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + text);
                         }
                     }
 
-                    lblEarthText.Text = lblRoll.Text;
+                    lblEarthText.Text = text;
                     lblEarthText.Show();
                     break;
 
@@ -541,9 +624,9 @@ namespace FourJobFiesta
             }
         }
         
-        public void rollJob(List<string> jobs, int min, int max)
+        public string rollJob(List<string> jobs, int min, int max)
         {
-            lblRoll.Text = jobs[r.Next(min, max)];
+            return jobs[r.Next(min, max)];
         }
 
         public void FormFourJobFiesta_Load(object sender, EventArgs e)
@@ -708,7 +791,6 @@ namespace FourJobFiesta
             picWater.ImageLocation = string.Empty;
             picFire.ImageLocation = string.Empty;
             picEarth.ImageLocation = string.Empty;
-            lblRoll.Text = string.Empty;
             lblWindText.Text = string.Empty;
             lblWindText.Hide();
             lblWaterText.Text = string.Empty;
@@ -777,7 +859,7 @@ namespace FourJobFiesta
         
         public void StartStopClick()
         {
-            if (!checkBox2.Checked)
+            if (hideToolStripMenuItem.Text == "Hide")
             {
                 if (btnTmrStart.Text == "Start")
                 {
@@ -800,7 +882,7 @@ namespace FourJobFiesta
         
         public void ResetClick()
         {
-            if (!checkBox2.Checked)
+            if (hideToolStripMenuItem.Text == "Hide")
             {
                 if (MessageBox.Show("Are you sure you want to reset the timer?", "Reset Timer", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -892,15 +974,14 @@ namespace FourJobFiesta
         public void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             BackColor = Color.WhiteSmoke;
-            label1.ForeColor = Color.Black;
             label2.ForeColor = Color.Black;
             label3.ForeColor = Color.Black;
             label4.ForeColor = Color.Black;
             checkBox1.ForeColor = Color.Black;
-            checkBox2.ForeColor = Color.Black;
             menuStrip1.BackColor = Color.WhiteSmoke;
             menuStrip1.ForeColor = Color.Black;
-            
+            groupTimer.ForeColor = Color.Black;
+
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
             {
                 Program.ConfigFile.AppSettings.Settings["Theme"].Value = "light";
@@ -917,14 +998,15 @@ namespace FourJobFiesta
         public void darkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BackColor = Color.Black;
-            label1.ForeColor = Color.White;
             label2.ForeColor = Color.White;
             label3.ForeColor = Color.White;
             label4.ForeColor = Color.White;
             checkBox1.ForeColor = Color.White;
-            checkBox2.ForeColor = Color.White;
             menuStrip1.BackColor = Color.Black;
             menuStrip1.ForeColor = Color.White;
+            groupTimer.ForeColor = Color.White;
+            btnTmrReset.ForeColor = Color.Black;
+            btnTmrStart.ForeColor = Color.Black;
 
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
             {
@@ -991,52 +1073,75 @@ namespace FourJobFiesta
 
             MakeVertical();
         }
+        
+        private void horizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
+            {
+                Program.ConfigFile.AppSettings.Settings["orientation"].Value = "horizontal";
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("orientation", "horizontal");
+            }
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
+
+            MakeHorizontal();
+        }
 
         public void MakeSquare()
         {
-            Size = new Size(630, 542);
+            Size = new Size(630, 545);
             
-            picWater.Location = new Point(410, 27);
-            lblWaterText.Location = new Point(419, 184);
-            picFire.Location = new Point(210, 226);
-            lblFireText.Location = new Point(219, 383);
-            picEarth.Location = new Point(410, 226);
-            lblEarthText.Location = new Point(419, 383);
+            picWater.Location = new Point(410, 25);
+            lblWaterText.Location = new Point(418, 180);
+            picFire.Location = new Point(210, 225);
+            lblFireText.Location = new Point(218, 380);
+            picEarth.Location = new Point(410, 225);
+            lblEarthText.Location = new Point(418, 380);
 
-            txtTimer.Location = new Point(210, 432);
-            txtTimer.Size = new Size(400, 68);
+            txtTimer.Location = new Point(210, 430);
+            txtTimer.Size = new Size(400, 70);
             txtTimer.Font = new Font(txtTimer.Font.FontFamily, 40, txtTimer.Font.Style, txtTimer.Font.Unit, txtTimer.Font.GdiCharSet, txtTimer.Font.GdiVerticalFont);
-            
-            btnTmrStart.Location = new Point(120, 432);
-            btnTmrReset.Location = new Point(120, 477);
-
-            checkBox2.Location = new Point(10, 436);
         }
 
         public void MakeVertical()
         {
-            Size = new Size(431, 918);
+            Size = new Size(430, 920);
             
-            picWater.Location = new Point(210, 226);
-            lblWaterText.Location = new Point(219, 383);
+            picWater.Location = new Point(210, 225);
+            lblWaterText.Location = new Point(218, 380);
             picFire.Location = new Point(210, 425);
-            lblFireText.Location = new Point(219, 582);
-            picEarth.Location = new Point(210, 624);
-            lblEarthText.Location = new Point(219, 781);
+            lblFireText.Location = new Point(218, 580);
+            picEarth.Location = new Point(210, 625);
+            lblEarthText.Location = new Point(218, 780);
 
             txtTimer.Location = new Point(210, 830);
-            txtTimer.Size = new Size(200, 45);
+            txtTimer.Size = new Size(200, 50);
             txtTimer.Font = new Font(txtTimer.Font.FontFamily, 25, txtTimer.Font.Style, txtTimer.Font.Unit, txtTimer.Font.GdiCharSet, txtTimer.Font.GdiVerticalFont);
-
-            btnTmrStart.Location = new Point(129, 852);
-            btnTmrReset.Location = new Point(10, 852);
-
-            checkBox2.Location = new Point(10, 832);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        public void MakeHorizontal()
         {
-            if (((CheckBox)sender).Checked)
+            Size = new Size(1030, 350);
+
+            picWater.Location = new Point(410, 25);
+            lblWaterText.Location = new Point(418, 180);
+            picFire.Location = new Point(610, 25);
+            lblFireText.Location = new Point(618, 180);
+            picEarth.Location = new Point(810, 25);
+            lblEarthText.Location = new Point(818, 180);
+
+            txtTimer.Location = new Point(210, 235);
+            txtTimer.Size = new Size(400, 70);
+            txtTimer.Font = new Font(txtTimer.Font.FontFamily, 40, txtTimer.Font.Style, txtTimer.Font.Unit, txtTimer.Font.GdiCharSet, txtTimer.Font.GdiVerticalFont);
+        }
+        
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hideToolStripMenuItem.Text == "Hide")
             {
                 if (btnTmrStart.Text == "Stop")
                 {
@@ -1048,12 +1153,55 @@ namespace FourJobFiesta
                 txtTimer.Hide();
                 btnTmrStart.Hide();
                 btnTmrReset.Hide();
+                groupTimer.Hide();
+
+                hideToolStripMenuItem.Text = "Show";
             }
             else
             {
                 txtTimer.Show();
                 btnTmrStart.Show();
                 btnTmrReset.Show();
+                groupTimer.Show();
+                hideToolStripMenuItem.Text = "Hide";
+            }
+        }
+
+        private void buttonVoid_Click(object sender, EventArgs e)
+        {
+            if (comboRules.Text == "Forbidden" 
+                && lblWindText.Text != VOID && lblWindText.Visible == true
+                && lblWaterText.Text != VOID && lblWaterText.Visible == true
+                && lblFireText.Text != VOID && lblFireText.Visible == true
+                && lblEarthText.Text != VOID && lblEarthText.Visible == true)
+            {
+                int voided = r.Next(4);
+
+                switch (voided)
+                {
+                    case 0:
+                        lblWindText.Text = VOID;
+                        picWind.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        break;
+
+                    case 1:
+                        lblWaterText.Text = VOID;
+                        picWater.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        break;
+
+                    case 2:
+                        lblFireText.Text = VOID;
+                        picFire.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        break;
+
+                    case 3:
+                        lblEarthText.Text = VOID;
+                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
     }
