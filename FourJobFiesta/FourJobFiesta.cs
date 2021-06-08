@@ -455,8 +455,10 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-                            case "Advance":
                                 text = rollJob(allJobs, 0, 6);
+                                break;
+                            case "Advance":
+                                text = rollJob(allJobs, 0, 7);
                                 break;
                             case "Team 750":
                                 text = rollJob(sevenFiftyJobs, 0, 3);
@@ -474,13 +476,20 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-                            case "Advance":
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
                                     min = 6;
 
                                 text = rollJob(allJobs, min, 11);
+                                break;
+                            case "Advance":
+                                if (comboMod.SelectedIndex == 1)
+                                    min = 0;
+                                else
+                                    min = 7;
+
+                                text = rollJob(allJobs, min, 13);
                                 break;
                             case "Team 750":
                                 if (comboMod.SelectedIndex == 1)
@@ -508,13 +517,20 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-                            case "Advance":
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
                                     min = 11;
 
                                 text = rollJob(allJobs, min, 16);
+                                break;
+                            case "Advance":
+                                if (comboMod.SelectedIndex == 1)
+                                    min = 0;
+                                else
+                                    min = 13;
+
+                                text = rollJob(allJobs, min, 20);
                                 break;
                             case "Team 750":
                                 if (comboMod.SelectedIndex == 1)
