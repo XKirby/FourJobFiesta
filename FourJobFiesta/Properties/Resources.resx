@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,400 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Bartz_Bard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-bard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Beastmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-beastmaster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Berserker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-berserker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Black Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-black mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Blue Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-blue mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Cannoneer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-cannoneer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Chemist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-chemist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Dancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-dancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Dragoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-dragoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Freelancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-freelancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Geomancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-geomancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Gladiator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-gladiator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Mime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-mime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-monk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Mystic Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-mystic knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Necromancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-necromancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Ninja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-ninja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Oracle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-oracle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Red Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-red mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Samurai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-samurai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Summoner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-summoner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Thief" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-thief.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_Time Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-time mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bartz_White Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bartz-white mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Earth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\earth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Bard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-bard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Beastmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-beastmaster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Berserker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-berserker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Black Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-black mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Blue Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-blue mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Cannoneer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-cannoneer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Chemist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-chemist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Dancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-dancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Dragoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-dragoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Freelancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-freelancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Geomancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-geomancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Gladiator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-gladiator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Mime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-mime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-monk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Mystic Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-mystic knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Necromancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-necromancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Ninja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-ninja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Oracle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-oracle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Red Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-red mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Samurai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-samurai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Summoner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-summoner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Thief" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-thief.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_Time Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-time mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faris_White Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\faris-white mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Bard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-bard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Beastmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-beastmaster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Berserker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-berserker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Black Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-black mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Blue Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-blue mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Chemist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-chemist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Dancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-dancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Dragoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-dragoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Freelancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-freelancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Geomancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-geomancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-monk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Mystic Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-mystic knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Ninja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-ninja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Red Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-red mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Samurai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-samurai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Summoner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-summoner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Thief" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-thief.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_Time Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-time mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Galuf_White Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\galuf-white mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Bard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-bard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Beastmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-beastmaster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Berserker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-berserker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Black Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-black mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Blue Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-blue mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Cannoneer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-cannoneer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Chemist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-chemist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Dancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-dancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Dragoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-dragoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Freelancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-freelancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Geomancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-geomancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Gladiator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-gladiator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Mime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-mime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-monk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Mystic Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-mystic knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Necromancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-necromancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Ninja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-ninja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Oracle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-oracle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Red Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-red mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Samurai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-samurai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Summoner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-summoner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Thief" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-thief.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_Time Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-time mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Krile_White Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\krile-white mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Bard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-bard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Beastmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-beastmaster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Berserker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-berserker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Black Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-black mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Blue Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-blue mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Cannoneer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-cannoneer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Chemist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-chemist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Dancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-dancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Dragoon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-dragoon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Freelancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-freelancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Geomancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-geomancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Gladiator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-gladiator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Mime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-mime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-monk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Mystic Knight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-mystic knight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Necromancer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-necromancer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Ninja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-ninja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Oracle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-oracle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Red Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-red mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Samurai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-samurai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Summoner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-summoner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Thief" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-thief.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_Time Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-time mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lenna_White Mage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\lenna-white mage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Void" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\void.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Water" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -77,10 +77,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TimerShortcuts.resx">
       <DependentUpon>TimerShortcuts.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Images\crystals.pdn" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,7 +97,144 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FFVFJF2016.ico" CopyToOutputDirectory="Always" />
+    <EmbeddedResource Include="FFVFJF2016.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Bartz-Bard.png" />
+    <EmbeddedResource Include="Images\Bartz-Beastmaster.png" />
+    <EmbeddedResource Include="Images\Bartz-Berserker.png" />
+    <EmbeddedResource Include="Images\Bartz-Black Mage.png" />
+    <EmbeddedResource Include="Images\Bartz-Blue Mage.png" />
+    <EmbeddedResource Include="Images\Bartz-Cannoneer.png" />
+    <EmbeddedResource Include="Images\Bartz-Chemist.png" />
+    <EmbeddedResource Include="Images\Bartz-Dancer.png" />
+    <EmbeddedResource Include="Images\Bartz-Dragoon.png" />
+    <EmbeddedResource Include="Images\Bartz-Freelancer.png" />
+    <EmbeddedResource Include="Images\Bartz-Geomancer.png" />
+    <EmbeddedResource Include="Images\Bartz-Gladiator.png" />
+    <EmbeddedResource Include="Images\Bartz-Knight.png" />
+    <EmbeddedResource Include="Images\Bartz-Mime.png" />
+    <EmbeddedResource Include="Images\Bartz-Monk.png" />
+    <EmbeddedResource Include="Images\Bartz-Mystic Knight.png" />
+    <EmbeddedResource Include="Images\Bartz-Necromancer.png" />
+    <EmbeddedResource Include="Images\Bartz-Ninja.png" />
+    <EmbeddedResource Include="Images\Bartz-Oracle.png" />
+    <EmbeddedResource Include="Images\Bartz-Ranger.png" />
+    <EmbeddedResource Include="Images\Bartz-Red Mage.png" />
+    <EmbeddedResource Include="Images\Bartz-Samurai.png" />
+    <EmbeddedResource Include="Images\Bartz-Summoner.png" />
+    <EmbeddedResource Include="Images\Bartz-Thief.png" />
+    <EmbeddedResource Include="Images\Bartz-Time Mage.png" />
+    <EmbeddedResource Include="Images\Bartz-White Mage.png" />
+    <EmbeddedResource Include="Images\Earth.png" />
+    <EmbeddedResource Include="Images\Faris-Bard.png" />
+    <EmbeddedResource Include="Images\Faris-Beastmaster.png" />
+    <EmbeddedResource Include="Images\Faris-Berserker.png" />
+    <EmbeddedResource Include="Images\Faris-Black Mage.png" />
+    <EmbeddedResource Include="Images\Faris-Blue Mage.png" />
+    <EmbeddedResource Include="Images\Faris-Cannoneer.png" />
+    <EmbeddedResource Include="Images\Faris-Chemist.png" />
+    <EmbeddedResource Include="Images\Faris-Dancer.png" />
+    <EmbeddedResource Include="Images\Faris-Dragoon.png" />
+    <EmbeddedResource Include="Images\Faris-Freelancer.png" />
+    <EmbeddedResource Include="Images\Faris-Geomancer.png" />
+    <EmbeddedResource Include="Images\Faris-Gladiator.png" />
+    <EmbeddedResource Include="Images\Faris-Knight.png" />
+    <EmbeddedResource Include="Images\Faris-Mime.png" />
+    <EmbeddedResource Include="Images\Faris-Monk.png" />
+    <EmbeddedResource Include="Images\Faris-Mystic Knight.png" />
+    <EmbeddedResource Include="Images\Faris-Necromancer.png" />
+    <EmbeddedResource Include="Images\Faris-Ninja.png" />
+    <EmbeddedResource Include="Images\Faris-Oracle.png" />
+    <EmbeddedResource Include="Images\Faris-Ranger.png" />
+    <EmbeddedResource Include="Images\Faris-Red Mage.png" />
+    <EmbeddedResource Include="Images\Faris-Samurai.png" />
+    <EmbeddedResource Include="Images\Faris-Summoner.png" />
+    <EmbeddedResource Include="Images\Faris-Thief.png" />
+    <EmbeddedResource Include="Images\Faris-Time Mage.png" />
+    <EmbeddedResource Include="Images\Faris-White Mage.png" />
+    <EmbeddedResource Include="Images\Fire.png" />
+    <EmbeddedResource Include="Images\freelancers.png" />
+    <EmbeddedResource Include="Images\Galuf-Bard.png" />
+    <EmbeddedResource Include="Images\Galuf-Beastmaster.png" />
+    <EmbeddedResource Include="Images\Galuf-Berserker.png" />
+    <EmbeddedResource Include="Images\Galuf-Black Mage.png" />
+    <EmbeddedResource Include="Images\Galuf-Blue Mage.png" />
+    <EmbeddedResource Include="Images\Galuf-Chemist.png" />
+    <EmbeddedResource Include="Images\Galuf-Dancer.png" />
+    <EmbeddedResource Include="Images\Galuf-Dragoon.png" />
+    <EmbeddedResource Include="Images\Galuf-Freelancer.png" />
+    <EmbeddedResource Include="Images\Galuf-Geomancer.png" />
+    <EmbeddedResource Include="Images\Galuf-Knight.png" />
+    <EmbeddedResource Include="Images\Galuf-Monk.png" />
+    <EmbeddedResource Include="Images\Galuf-Mystic Knight.png" />
+    <EmbeddedResource Include="Images\Galuf-Ninja.png" />
+    <EmbeddedResource Include="Images\Galuf-Ranger.png" />
+    <EmbeddedResource Include="Images\Galuf-Red Mage.png" />
+    <EmbeddedResource Include="Images\Galuf-Samurai.png" />
+    <EmbeddedResource Include="Images\Galuf-Summoner.png" />
+    <EmbeddedResource Include="Images\Galuf-Thief.png" />
+    <EmbeddedResource Include="Images\Galuf-Time Mage.png" />
+    <EmbeddedResource Include="Images\Galuf-White Mage.png" />
+    <EmbeddedResource Include="Images\Krile-Bard.png" />
+    <EmbeddedResource Include="Images\Krile-Beastmaster.png" />
+    <EmbeddedResource Include="Images\Krile-Berserker.png" />
+    <EmbeddedResource Include="Images\Krile-Black Mage.png" />
+    <EmbeddedResource Include="Images\Krile-Blue Mage.png" />
+    <EmbeddedResource Include="Images\Krile-Cannoneer.png" />
+    <EmbeddedResource Include="Images\Krile-Chemist.png" />
+    <EmbeddedResource Include="Images\Krile-Dancer.png" />
+    <EmbeddedResource Include="Images\Krile-Dragoon.png" />
+    <EmbeddedResource Include="Images\Krile-Freelancer.png" />
+    <EmbeddedResource Include="Images\Krile-Geomancer.png" />
+    <EmbeddedResource Include="Images\Krile-Gladiator.png" />
+    <EmbeddedResource Include="Images\Krile-Knight.png" />
+    <EmbeddedResource Include="Images\Krile-Mime.png" />
+    <EmbeddedResource Include="Images\Krile-Monk.png" />
+    <EmbeddedResource Include="Images\Krile-Mystic Knight.png" />
+    <EmbeddedResource Include="Images\Krile-Necromancer.png" />
+    <EmbeddedResource Include="Images\Krile-Ninja.png" />
+    <EmbeddedResource Include="Images\Krile-Oracle.png" />
+    <EmbeddedResource Include="Images\Krile-Ranger.png" />
+    <EmbeddedResource Include="Images\Krile-Red Mage.png" />
+    <EmbeddedResource Include="Images\Krile-Samurai.png" />
+    <EmbeddedResource Include="Images\Krile-Summoner.png" />
+    <EmbeddedResource Include="Images\Krile-Thief.png" />
+    <EmbeddedResource Include="Images\Krile-Time Mage.png" />
+    <EmbeddedResource Include="Images\Krile-White Mage.png" />
+    <EmbeddedResource Include="Images\Lenna-Bard.png" />
+    <EmbeddedResource Include="Images\Lenna-Beastmaster.png" />
+    <EmbeddedResource Include="Images\Lenna-Berserker.png" />
+    <EmbeddedResource Include="Images\Lenna-Black Mage.png" />
+    <EmbeddedResource Include="Images\Lenna-Blue Mage.png" />
+    <EmbeddedResource Include="Images\Lenna-Cannoneer.png" />
+    <EmbeddedResource Include="Images\Lenna-Chemist.png" />
+    <EmbeddedResource Include="Images\Lenna-Dancer.png" />
+    <EmbeddedResource Include="Images\Lenna-Dragoon.png" />
+    <EmbeddedResource Include="Images\Lenna-Freelancer.png" />
+    <EmbeddedResource Include="Images\Lenna-Geomancer.png" />
+    <EmbeddedResource Include="Images\Lenna-Gladiator.png" />
+    <EmbeddedResource Include="Images\Lenna-Knight.png" />
+    <EmbeddedResource Include="Images\Lenna-Mime.png" />
+    <EmbeddedResource Include="Images\Lenna-Monk.png" />
+    <EmbeddedResource Include="Images\Lenna-Mystic Knight.png" />
+    <EmbeddedResource Include="Images\Lenna-Necromancer.png" />
+    <EmbeddedResource Include="Images\Lenna-Ninja.png" />
+    <EmbeddedResource Include="Images\Lenna-Oracle.png" />
+    <EmbeddedResource Include="Images\Lenna-Ranger.png" />
+    <EmbeddedResource Include="Images\Lenna-Red Mage.png" />
+    <EmbeddedResource Include="Images\Lenna-Samurai.png" />
+    <EmbeddedResource Include="Images\Lenna-Summoner.png" />
+    <EmbeddedResource Include="Images\Lenna-Thief.png" />
+    <EmbeddedResource Include="Images\Lenna-Time Mage.png" />
+    <EmbeddedResource Include="Images\Lenna-White Mage.png" />
+    <EmbeddedResource Include="Images\RNG.png" />
+    <EmbeddedResource Include="Images\Screenshot.PNG" />
+    <EmbeddedResource Include="Images\Screenshot2.PNG" />
+    <EmbeddedResource Include="Images\Screenshot3.PNG" />
+    <EmbeddedResource Include="Images\Void.png" />
+    <EmbeddedResource Include="Images\Water.png" />
+    <EmbeddedResource Include="Images\Wind.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

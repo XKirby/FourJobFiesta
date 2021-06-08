@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
 using System.Diagnostics;
+using FourJobFiesta.Properties;
 
 namespace FourJobFiesta
 {
@@ -291,19 +292,22 @@ namespace FourJobFiesta
 
             if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + text);
+                picWind.Image = (Image)Resources.ResourceManager.GetObject("Bartz_" + text);
+                picWind.Tag = "Bartz_" + text;
                 lblWindText.Text = text;
                 lblWindText.Show();
             }
             else if (text.Equals(VOID))
             {
-                picWind.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                picWind.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                picWind.Tag = text;
                 lblWindText.Text = text;
                 lblWindText.Show();
             }
             else
             {
-                picWind.ImageLocation = string.Empty;
+                picWind.Image = null;
+                picWind.Tag = string.Empty;
                 lblWindText.Text = string.Empty;
                 lblWindText.Hide();
             }
@@ -315,19 +319,22 @@ namespace FourJobFiesta
 
             if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + text);
+                picWater.Image = (Image)Resources.ResourceManager.GetObject("Lenna_" + text);
+                picWater.Tag = "Lenna_" + text;
                 lblWaterText.Text = text;
                 lblWaterText.Show();
             }
             else if (text.Equals(VOID))
             {
-                picWater.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                picWater.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                picWater.Tag = text;
                 lblWaterText.Text = text;
                 lblWaterText.Show();
             }
             else
             {
-                picWater.ImageLocation = string.Empty;
+                picWater.Image = null;
+                picWater.Tag = string.Empty;
                 lblWaterText.Text = string.Empty;
                 lblWaterText.Hide();
             }
@@ -339,19 +346,22 @@ namespace FourJobFiesta
 
             if (!text.Equals("Clear") && !text.Equals(VOID))
             {
-                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + text);
+                picFire.Image = (Image)Resources.ResourceManager.GetObject("Faris_" + text);
+                picFire.Tag = "Faris_" + text;
                 lblFireText.Text = text;
                 lblFireText.Show();
             }
             else if (text.Equals(VOID))
             {
-                picFire.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                picFire.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                picFire.Tag = text;
                 lblFireText.Text = text;
                 lblFireText.Show();
             }
             else
             {
-                picFire.ImageLocation = string.Empty;
+                picFire.Image = null;
+                picFire.Tag = string.Empty;
                 lblFireText.Text = string.Empty;
                 lblFireText.Hide();
             }
@@ -365,17 +375,20 @@ namespace FourJobFiesta
             {
                 if (checkBox1.Checked)
                 {
-                    picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
+                    picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
+                    picEarth.Tag = "Krile_" + text;
                 }
                 else
                 {
                     if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
+                        picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
+                        picEarth.Tag = "Krile_" + text;
                     }
                     else
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + text);
+                        picEarth.Image = (Image)Resources.ResourceManager.GetObject("Galuf_" + text);
+                        picEarth.Tag = "Galuf_" + text;
                     }
                 }
 
@@ -384,13 +397,13 @@ namespace FourJobFiesta
             }
             else if (text.Equals(VOID))
             {
-                picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                picEarth.Image = (Image)Resources.ResourceManager.GetObject(VOID);
                 lblEarthText.Text = text;
                 lblEarthText.Show();
             }
             else
             {
-                picEarth.ImageLocation = string.Empty;
+                picEarth.Image = null;
                 lblEarthText.Text = string.Empty;
                 lblEarthText.Hide();
             }
@@ -581,19 +594,22 @@ namespace FourJobFiesta
             switch (comboCrystal.SelectedIndex)
             {
                 case 0:
-                    picWind.ImageLocation = string.Format(IMG_FORMAT_STR, "Bartz-" + text);
+                    picWind.Image = (Image)Resources.ResourceManager.GetObject("Bartz_" + text);
+                    picWind.Tag = "Bartz_" + text;
                     lblWindText.Text = text;
                     lblWindText.Show();
                     break;
 
                 case 1:
-                    picWater.ImageLocation = string.Format(IMG_FORMAT_STR, "Lenna-" + text);
+                    picWater.Image = (Image)Resources.ResourceManager.GetObject("Lenna_" + text);
+                    picWater.Tag = "Lenna_" + text;
                     lblWaterText.Text = text;
                     lblWaterText.Show();
                     break;
 
                 case 2:
-                    picFire.ImageLocation = string.Format(IMG_FORMAT_STR, "Faris-" + text);
+                    picFire.Image = (Image)Resources.ResourceManager.GetObject("Faris_" + text);
+                    picFire.Tag = "Faris_" + text;
                     lblFireText.Text = text;
                     lblFireText.Show();
                     break;
@@ -601,17 +617,20 @@ namespace FourJobFiesta
                 case 3:
                     if (checkBox1.Checked)
                     {
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
+                        picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
+                        picEarth.Tag = "Krile_" + text;
                     }
                     else
                     {
                         if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
                         {
-                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Krile-" + text);
+                            picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
+                            picEarth.Tag = "Krile_" + text;
                         }
                         else
                         {
-                            picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, "Galuf-" + text);
+                            picEarth.Image = (Image)Resources.ResourceManager.GetObject("Galuf_" + text);
+                            picEarth.Tag = "Galuf_" + text;
                         }
                     }
 
@@ -643,10 +662,10 @@ namespace FourJobFiesta
                 "crystal," + comboCrystal.SelectedIndex.ToString(),
                 "type," + comboRules.SelectedIndex.ToString(),
                 "mod," + comboMod.SelectedIndex.ToString(),
-                "wind," + picWind.ImageLocation,
-                "water," + picWater.ImageLocation,
-                "fire," + picFire.ImageLocation,
-                "earth," + picEarth.ImageLocation,
+                "wind," + picWind.Tag,
+                "water," + picWater.Tag,
+                "fire," + picFire.Tag,
+                "earth," + picEarth.Tag,
                 "time," + txtTimer.Text,
                 "krile," + checkBox1.Checked.ToString()
             };
@@ -726,7 +745,7 @@ namespace FourJobFiesta
                 {
                     string[] split = line.Split(',');
 
-                    if (split.Count() == 2)
+                    if (split.Count() == 2 && !string.IsNullOrEmpty(split[1]))
                     {
                         switch (split[0])
                         {
@@ -743,26 +762,30 @@ namespace FourJobFiesta
                                 break;
 
                             case "wind":
-                                picWind.ImageLocation = split[1];
-                                lblWindText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                picWind.Image = (Image)Resources.ResourceManager.GetObject(split[1]);
+                                picWind.Tag = split[1];
+                                lblWindText.Text = split[1].Split('_')[1];
                                 lblWindText.Show();
                                 break;
 
                             case "water":
-                                picWater.ImageLocation = split[1];
-                                lblWaterText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                picWater.Image = (Image)Resources.ResourceManager.GetObject(split[1]);
+                                picWater.Tag = split[1];
+                                lblWaterText.Text = split[1].Split('_')[1];
                                 lblWaterText.Show();
                                 break;
 
                             case "fire":
-                                picFire.ImageLocation = split[1];
-                                lblFireText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                picFire.Image = (Image)Resources.ResourceManager.GetObject(split[1]);
+                                picFire.Tag = split[1];
+                                lblFireText.Text = split[1].Split('_')[1];
                                 lblFireText.Show();
                                 break;
 
                             case "earth":
-                                picEarth.ImageLocation = split[1];
-                                lblEarthText.Text = split[1].Split('-')[1].Replace(".png", string.Empty);
+                                picEarth.Image = (Image)Resources.ResourceManager.GetObject(split[1]);
+                                picEarth.Tag = split[1];
+                                lblEarthText.Text = split[1].Split('_')[1];
                                 lblEarthText.Show();
                                 break;
 
@@ -787,10 +810,14 @@ namespace FourJobFiesta
             comboCrystal.SelectedIndex = -1;
             comboRules.SelectedIndex = -1;
             comboMod.SelectedIndex = -1;
-            picWind.ImageLocation = string.Empty;
-            picWater.ImageLocation = string.Empty;
-            picFire.ImageLocation = string.Empty;
-            picEarth.ImageLocation = string.Empty;
+            picWind.Image = null;
+            picWind.Tag = string.Empty;
+            picWater.Image = null;
+            picWater.Tag = string.Empty;
+            picFire.Image = null;
+            picFire.Tag = string.Empty;
+            picEarth.Image = null;
+            picEarth.Tag = string.Empty;
             lblWindText.Text = string.Empty;
             lblWindText.Hide();
             lblWaterText.Text = string.Empty;
@@ -927,10 +954,10 @@ namespace FourJobFiesta
                 "crystal," + comboCrystal.SelectedIndex.ToString(),
                 "type," + comboRules.SelectedIndex.ToString(),
                 "mod," + comboMod.SelectedIndex.ToString(),
-                "wind," + picWind.ImageLocation,
-                "water," + picWater.ImageLocation,
-                "fire," + picFire.ImageLocation,
-                "earth," + picEarth.ImageLocation,
+                "wind," + picWind.Tag,
+                "water," + picWater.Tag,
+                "fire," + picFire.Tag,
+                "earth," + picEarth.Tag,
                 "time," + txtTimer.Text,
                 "krile," + checkBox1.Checked.ToString()
             };
@@ -1023,18 +1050,22 @@ namespace FourJobFiesta
 
         public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(picEarth.ImageLocation))
+            string tag = (string)picEarth.Tag;
+
+            if (!string.IsNullOrEmpty(tag))
             {
                 if (checkBox1.Checked)
                 {
-                    picEarth.ImageLocation = picEarth.ImageLocation.Replace("Galuf-", "Krile-");
+                    picEarth.Tag = tag.Replace("Galuf_", "Krile_");
+                    picEarth.Image = (Image)Resources.ResourceManager.GetObject((string)picEarth.Tag);
                 }
                 else
                 {
-                    if (!picEarth.ImageLocation.Contains("Krile-Mime") && !picEarth.ImageLocation.Contains("Krile-Cannoneer") && !picEarth.ImageLocation.Contains("Krile-Necromancer")
-                        && !picEarth.ImageLocation.Contains("Krile-Oracle") && !picEarth.ImageLocation.Contains("Krile-Gladiator"))
+                    if (!tag.Contains("Krile-Mime") && !tag.Contains("Krile-Cannoneer") && !tag.Contains("Krile-Necromancer")
+                        && !tag.Contains("Krile-Oracle") && !tag.Contains("Krile-Gladiator"))
                     {
-                        picEarth.ImageLocation = picEarth.ImageLocation.Replace("Krile-", "Galuf-");
+                        picEarth.Tag = tag.Replace("Krile_", "Galuf_");
+                        picEarth.Image = (Image)Resources.ResourceManager.GetObject((string)picEarth.Tag);
                     }
                 }
             }
@@ -1181,22 +1212,26 @@ namespace FourJobFiesta
                 {
                     case 0:
                         lblWindText.Text = VOID;
-                        picWind.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        picWind.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                        picWind.Tag = VOID;
                         break;
 
                     case 1:
                         lblWaterText.Text = VOID;
-                        picWater.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        picWater.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                        picWater.Tag = VOID;
                         break;
 
                     case 2:
                         lblFireText.Text = VOID;
-                        picFire.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        picFire.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                        picFire.Tag = VOID;
                         break;
 
                     case 3:
                         lblEarthText.Text = VOID;
-                        picEarth.ImageLocation = string.Format(IMG_FORMAT_STR, VOID);
+                        picEarth.Image = (Image)Resources.ResourceManager.GetObject(VOID);
+                        picEarth.Tag = VOID;
                         break;
 
                     default:
