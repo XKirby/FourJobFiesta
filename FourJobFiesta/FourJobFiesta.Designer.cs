@@ -49,10 +49,11 @@
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picWind = new System.Windows.Forms.PictureBox();
@@ -71,7 +72,6 @@
             this.lblWaterText = new System.Windows.Forms.Label();
             this.lblFireText = new System.Windows.Forms.Label();
             this.lblEarthText = new System.Windows.Forms.Label();
-            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupTimer = new System.Windows.Forms.GroupBox();
             this.buttonVoid = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -212,7 +212,7 @@
             this.darkToolStripMenuItem});
             this.themeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.themeToolStripMenuItem.Name = "themeToolStripMenuItem";
-            this.themeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.themeToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.themeToolStripMenuItem.Text = "Theme";
             // 
             // toolStripMenuItem2
@@ -239,7 +239,7 @@
             this.horizontalToolStripMenuItem});
             this.layoutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.layoutToolStripMenuItem.Name = "layoutToolStripMenuItem";
-            this.layoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.layoutToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.layoutToolStripMenuItem.Text = "Layout";
             // 
             // squareToolStripMenuItem
@@ -273,22 +273,8 @@
             this.editTextColorToolStripMenuItem,
             this.editShortcutsToolStripMenuItem});
             this.timerToolStripMenuItem1.Name = "timerToolStripMenuItem1";
-            this.timerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.timerToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
             this.timerToolStripMenuItem1.Text = "Timer";
-            // 
-            // editBackgroundColorToolStripMenuItem
-            // 
-            this.editBackgroundColorToolStripMenuItem.Name = "editBackgroundColorToolStripMenuItem";
-            this.editBackgroundColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.editBackgroundColorToolStripMenuItem.Text = "Edit Background Color";
-            this.editBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.editBackgroundColorToolStripMenuItem_Click);
-            // 
-            // editTextColorToolStripMenuItem
-            // 
-            this.editTextColorToolStripMenuItem.Name = "editTextColorToolStripMenuItem";
-            this.editTextColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.editTextColorToolStripMenuItem.Text = "Edit Text Color";
-            this.editTextColorToolStripMenuItem.Click += new System.EventHandler(this.editTextColorToolStripMenuItem_Click);
             // 
             // startStopToolStripMenuItem
             // 
@@ -303,6 +289,27 @@
             this.resetToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.hideToolStripMenuItem.Text = "Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
+            // editBackgroundColorToolStripMenuItem
+            // 
+            this.editBackgroundColorToolStripMenuItem.Name = "editBackgroundColorToolStripMenuItem";
+            this.editBackgroundColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.editBackgroundColorToolStripMenuItem.Text = "Edit Background Color";
+            this.editBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.editBackgroundColorToolStripMenuItem_Click);
+            // 
+            // editTextColorToolStripMenuItem
+            // 
+            this.editTextColorToolStripMenuItem.Name = "editTextColorToolStripMenuItem";
+            this.editTextColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.editTextColorToolStripMenuItem.Text = "Edit Text Color";
+            this.editTextColorToolStripMenuItem.Click += new System.EventHandler(this.editTextColorToolStripMenuItem_Click);
             // 
             // editShortcutsToolStripMenuItem
             // 
@@ -380,7 +387,7 @@
             "Team 750",
             "Team No 750",
             "Classic",
-            "Forbidden"});
+            "Advance"});
             this.comboRules.Location = new System.Drawing.Point(75, 90);
             this.comboRules.Name = "comboRules";
             this.comboRules.Size = new System.Drawing.Size(120, 69);
@@ -494,13 +501,6 @@
             this.lblEarthText.TabIndex = 42;
             this.lblEarthText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblEarthText.Visible = false;
-            // 
-            // hideToolStripMenuItem
-            // 
-            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
-            this.hideToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.hideToolStripMenuItem.Text = "Hide";
-            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
             // 
             // groupTimer
             // 

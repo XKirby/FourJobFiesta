@@ -34,7 +34,7 @@ namespace FourJobFiesta
         public List<string> classicJobs = new List<string>();
         public List<string> sevenFiftyJobs = new List<string>();
         public List<string> no750Jobs = new List<string>();
-        public List<string> forbidden = new List<string>();
+        public List<string> advance = new List<string>();
 
         public const string IMG_FORMAT_STR = "Images/{0}.png";
         public const string TIMER_FORMAT = @"hh\:mm\:ss\.ff";
@@ -168,10 +168,9 @@ namespace FourJobFiesta
             no750Jobs.Add("Samurai");
             no750Jobs.Add("Mime");
 
-            forbidden.Add("Cannoneer");
-            forbidden.Add("Necromancer");
-            forbidden.Add("Oracle");
-            forbidden.Add("Gladiator");
+            advance.Add("Cannoneer");
+            advance.Add("Oracle");
+            advance.Add("Gladiator");
             
             AddContextMenus();
             SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
@@ -219,7 +218,6 @@ namespace FourJobFiesta
             }
 
             cmWind.MenuItems.Add("Cannoneer", mcWindItem_Click);
-            cmWind.MenuItems.Add("Necromancer", mcWindItem_Click);
             cmWind.MenuItems.Add("Oracle", mcWindItem_Click);
             cmWind.MenuItems.Add("Gladiator", mcWindItem_Click);
             cmWind.MenuItems.Add(VOID, mcWindItem_Click);
@@ -237,7 +235,6 @@ namespace FourJobFiesta
             }
 
             cmWater.MenuItems.Add("Cannoneer", mcWaterItem_Click);
-            cmWater.MenuItems.Add("Necromancer", mcWaterItem_Click);
             cmWater.MenuItems.Add("Oracle", mcWaterItem_Click);
             cmWater.MenuItems.Add("Gladiator", mcWaterItem_Click);
             cmWater.MenuItems.Add(VOID, mcWaterItem_Click);
@@ -255,7 +252,6 @@ namespace FourJobFiesta
             }
 
             cmFire.MenuItems.Add("Cannoneer", mcFireItem_Click);
-            cmFire.MenuItems.Add("Necromancer", mcFireItem_Click);
             cmFire.MenuItems.Add("Oracle", mcFireItem_Click);
             cmFire.MenuItems.Add("Gladiator", mcFireItem_Click);
             cmFire.MenuItems.Add(VOID, mcFireItem_Click);
@@ -273,7 +269,6 @@ namespace FourJobFiesta
             }
 
             cmEarth.MenuItems.Add("Cannoneer", mcEarthItem_Click);
-            cmEarth.MenuItems.Add("Necromancer", mcEarthItem_Click);
             cmEarth.MenuItems.Add("Oracle", mcEarthItem_Click);
             cmEarth.MenuItems.Add("Gladiator", mcEarthItem_Click);
             cmEarth.MenuItems.Add(VOID, mcEarthItem_Click);
@@ -380,7 +375,7 @@ namespace FourJobFiesta
                 }
                 else
                 {
-                    if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
+                    if (text == "Mime" || text == "Cannoneer" || text == "Oracle" || text == "Gladiator")
                     {
                         picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
                         picEarth.Tag = "Krile_" + text;
@@ -414,16 +409,9 @@ namespace FourJobFiesta
         {
             string text = string.Empty;
 
-            if (comboRules.Text == "Forbidden")
+            if (comboRules.Text == "Advance" && comboCrystal.Text == "Earth")
             {
-                if (comboCrystal.Text != "Earth")
-                {
-                    text = allJobs[r.Next(allJobs.Count - 2)];
-                }
-                else if(comboCrystal.Text == "Earth")
-                {
-                    text = forbidden[r.Next(forbidden.Count)];
-                }
+                text = advance[r.Next(advance.Count)];
             }
             else if (comboMod.SelectedIndex == 2 && comboRules.Text != "Classic") // chaos
             {
@@ -467,6 +455,7 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
+                            case "Advance":
                                 text = rollJob(allJobs, 0, 6);
                                 break;
                             case "Team 750":
@@ -485,7 +474,7 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-
+                            case "Advance":
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -494,7 +483,6 @@ namespace FourJobFiesta
                                 text = rollJob(allJobs, min, 11);
                                 break;
                             case "Team 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -503,7 +491,6 @@ namespace FourJobFiesta
                                 text = rollJob(sevenFiftyJobs, min, 6);
                                 break;
                             case "Team No 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -521,7 +508,7 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-
+                            case "Advance":
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -530,7 +517,6 @@ namespace FourJobFiesta
                                 text = rollJob(allJobs, min, 16);
                                 break;
                             case "Team 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -539,7 +525,6 @@ namespace FourJobFiesta
                                 text = rollJob(sevenFiftyJobs, min, 8);
                                 break;
                             case "Team No 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -557,7 +542,6 @@ namespace FourJobFiesta
                         switch (comboRules.Text)
                         {
                             case "Normal":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -566,7 +550,6 @@ namespace FourJobFiesta
                                 text = rollJob(allJobs, min, 20);
                                 break;
                             case "Team 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -575,7 +558,6 @@ namespace FourJobFiesta
                                 text = rollJob(sevenFiftyJobs, min, 10);
                                 break;
                             case "Team No 750":
-
                                 if (comboMod.SelectedIndex == 1)
                                     min = 0;
                                 else
@@ -622,7 +604,7 @@ namespace FourJobFiesta
                     }
                     else
                     {
-                        if (text == "Mime" || text == "Cannoneer" || text == "Necromancer" || text == "Oracle" || text == "Gladiator")
+                        if (text == "Mime" || text == "Cannoneer" || text == "Oracle" || text == "Gladiator")
                         {
                             picEarth.Image = (Image)Resources.ResourceManager.GetObject("Krile_" + text);
                             picEarth.Tag = "Krile_" + text;
@@ -1061,8 +1043,8 @@ namespace FourJobFiesta
                 }
                 else
                 {
-                    if (!tag.Contains("Krile-Mime") && !tag.Contains("Krile-Cannoneer") && !tag.Contains("Krile-Necromancer")
-                        && !tag.Contains("Krile-Oracle") && !tag.Contains("Krile-Gladiator"))
+                    if (!tag.Contains("Krile_Mime") && !tag.Contains("Krile_Cannoneer")
+                        && !tag.Contains("Krile_Oracle") && !tag.Contains("Krile_Gladiator"))
                     {
                         picEarth.Tag = tag.Replace("Krile_", "Galuf_");
                         picEarth.Image = (Image)Resources.ResourceManager.GetObject((string)picEarth.Tag);
@@ -1200,8 +1182,7 @@ namespace FourJobFiesta
 
         private void buttonVoid_Click(object sender, EventArgs e)
         {
-            if (comboRules.Text == "Forbidden" 
-                && lblWindText.Text != VOID && lblWindText.Visible == true
+            if (lblWindText.Text != VOID && lblWindText.Visible == true
                 && lblWaterText.Text != VOID && lblWaterText.Visible == true
                 && lblFireText.Text != VOID && lblFireText.Visible == true
                 && lblEarthText.Text != VOID && lblEarthText.Visible == true)
