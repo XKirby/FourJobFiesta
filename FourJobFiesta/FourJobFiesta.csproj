@@ -73,6 +73,7 @@
     <Compile Include="FourJobFiesta.Designer.cs">
       <DependentUpon>FourJobFiesta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimerShortcuts.cs">

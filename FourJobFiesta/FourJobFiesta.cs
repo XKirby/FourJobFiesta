@@ -11,6 +11,8 @@ using System.IO;
 using System.Configuration;
 using System.Diagnostics;
 using FourJobFiesta.Properties;
+using System.Reflection;
+using FourJobFiesta.Models;
 
 namespace FourJobFiesta
 {
@@ -30,20 +32,83 @@ namespace FourJobFiesta
         
         public Random r = new Random();
 
-        public List<string> allJobs = new List<string>();
-        public List<string> classicJobs = new List<string>();
-        public List<string> sevenFiftyJobs = new List<string>();
-        public List<string> no750Jobs = new List<string>();
-        public List<string> advance = new List<string>();
+        public Job[] allJobs = new Job[0];
+        public Job[] advance = new Job[0];
 
-        public const string IMG_FORMAT_STR = "Images/{0}.png";
         public const string TIMER_FORMAT = @"hh\:mm\:ss\.ff";
         public const string VOID = "Void";
+        public const string WIND = "Wind";
+        public const string WATER = "Water";
+        public const string FIRE = "Fire";
+        public const string EARTH = "Earth";
+        public const string TEAM750 = "Team 750";
+        public const string TEAMNO750 = "Team No 750";
+        public const string CLASSIC = "Classic";
 
         public FormFourJobFiesta()
         {
             InitializeComponent();
-            
+            BuildTimer();
+            BuildJobs();
+            AddContextMenus();
+            SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
+                Program.ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
+            SetOrientation();
+
+            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("userSettings");
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
+            tsmiVersion.Text = "v" + version;
+
+            Program.FinishInit(this);
+        }
+
+        private Job[] GetClassicJobs()
+        {
+            return allJobs.Where(a => a.Tags.Contains(CLASSIC)).ToArray();
+        }
+
+        private Job[] Get750Jobs()
+        {
+            return allJobs.Where(a => a.Tags.Contains(TEAM750)).ToArray();
+        }
+
+        private Job[] GetNo750Jobs()
+        {
+            return allJobs.Where(a => a.Tags.Contains(TEAMNO750)).ToArray();
+        }
+
+        private void SetOrientation()
+        {
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
+            {
+                string o = Program.ConfigFile.AppSettings.Settings["orientation"].Value.ToLower();
+
+                if (o == "vertical")
+                {
+                    MakeVertical();
+                }
+                else if (o == "horizontal")
+                {
+                    MakeHorizontal();
+                }
+                else
+                {
+                    MakeSquare();
+                }
+            }
+            else
+            {
+                Program.ConfigFile.AppSettings.Settings.Add("orientation", "square");
+                MakeSquare();
+            }
+        }
+
+        private void BuildTimer()
+        {
             txtTimer.BackColor = Color.Black;
             txtTimer.ForeColor = Color.White;
 
@@ -113,166 +178,82 @@ namespace FourJobFiesta
             timer.Start();
 
             txtTimer.Text = SavedTime.ToString(TIMER_FORMAT);
-            
-            allJobs.Add("Knight");
-            allJobs.Add("Monk");
-            allJobs.Add("Thief");
-            allJobs.Add("Black Mage");
-            allJobs.Add("White Mage");
-            allJobs.Add("Blue Mage");
-            allJobs.Add("Red Mage");
-            allJobs.Add("Time Mage");
-            allJobs.Add("Summoner");
-            allJobs.Add("Berserker");
-            allJobs.Add("Mystic Knight");
-            allJobs.Add("Beastmaster");
-            allJobs.Add("Geomancer");
-            allJobs.Add("Ninja");
-            allJobs.Add("Ranger");
-            allJobs.Add("Bard");
-            allJobs.Add("Dragoon");
-            allJobs.Add("Dancer");
-            allJobs.Add("Samurai");
-            allJobs.Add("Chemist");
-            allJobs.Add("Freelancer");
-            allJobs.Add("Mime");
-
-            classicJobs.Add("Knight");
-            classicJobs.Add("Monk");
-            classicJobs.Add("Thief");
-            classicJobs.Add("Black Mage");
-            classicJobs.Add("White Mage");
-            classicJobs.Add("Red Mage");
-
-            sevenFiftyJobs.Add("Black Mage");
-            sevenFiftyJobs.Add("White Mage");
-            sevenFiftyJobs.Add("Blue Mage");
-            sevenFiftyJobs.Add("Red Mage");
-            sevenFiftyJobs.Add("Time Mage");
-            sevenFiftyJobs.Add("Summoner");
-            sevenFiftyJobs.Add("Geomancer");
-            sevenFiftyJobs.Add("Bard");
-            sevenFiftyJobs.Add("Chemist");
-            sevenFiftyJobs.Add("Dancer");
-            sevenFiftyJobs.Add("Freelancer");
-
-            no750Jobs.Add("Knight");
-            no750Jobs.Add("Monk");
-            no750Jobs.Add("Thief");
-            no750Jobs.Add("Berserker");
-            no750Jobs.Add("Mystic Knight");
-            no750Jobs.Add("Beastmaster");
-            no750Jobs.Add("Ninja");
-            no750Jobs.Add("Ranger");
-            no750Jobs.Add("Dragoon");
-            no750Jobs.Add("Samurai");
-            no750Jobs.Add("Mime");
-
-            advance.Add("Cannoneer");
-            advance.Add("Oracle");
-            advance.Add("Gladiator");
-            
-            AddContextMenus();
-            SetKeybinds(Program.ConfigFile.AppSettings.Settings["StartStopTimerButton"].Value,
-                Program.ConfigFile.AppSettings.Settings["ResetTimerButton"].Value);
-
-            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("orientation"))
-            {
-                string o = Program.ConfigFile.AppSettings.Settings["orientation"].Value.ToLower();
-
-                if (o == "vertical")
-                {
-                    MakeVertical();
-                }
-                else if (o == "horizontal")
-                {
-                    MakeHorizontal();
-                }
-                else
-                {
-                    MakeSquare();
-                }
-            }
-            else
-            {
-                Program.ConfigFile.AppSettings.Settings.Add("orientation", "square");
-                MakeSquare();
-            }
-
-            Program.ConfigFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("userSettings");
-
-            Program.FinishInit(this);
         }
-        
+
+        private void BuildJobs()
+        {
+            allJobs = new[] { 
+                new Job("Knight", new[] { WIND, TEAMNO750, CLASSIC }),
+                new Job("Monk", new[] { WIND, TEAMNO750, CLASSIC }),
+                new Job("Thief", new[] { WIND, TEAMNO750, CLASSIC }),
+                new Job("Black Mage", new[] { WIND, TEAM750, CLASSIC }),
+                new Job("White Mage", new[] { WIND, TEAM750, CLASSIC }),
+                new Job("Blue Mage", new[] { WIND, TEAM750 }),
+
+                new Job("Red Mage", new[] { WATER, TEAM750, CLASSIC }),
+                new Job("Time Mage", new[] { WATER, TEAM750 }),
+                new Job("Summoner", new[] { WATER, TEAM750 }),
+                new Job("Berserker", new[] { WATER, TEAMNO750 }),
+                new Job("Mystic Knight", new[] { WATER, TEAMNO750 }),
+
+                new Job("Beastmaster", new[] { FIRE, TEAMNO750 }),
+                new Job("Geomancer", new[] { FIRE, TEAM750 }),
+                new Job("Ninja", new[] { FIRE, TEAMNO750 }),
+                new Job("Ranger", new[] { FIRE, TEAMNO750 }),
+                new Job("Bard", new[] { FIRE, TEAM750 }),
+
+                new Job("Dragoon", new[] { EARTH, TEAMNO750 }),
+                new Job("Dancer", new[] { EARTH, TEAM750 }),
+                new Job("Samurai", new[] { EARTH, TEAMNO750 }),
+                new Job("Chemist", new[] { EARTH, TEAM750 }),
+
+                new Job("Freelancer"),
+                new Job("Mime")
+            };
+
+            advance = new[] {
+                new Job("Cannoneer"),
+                new Job("Oracle"),
+                new Job("Gladiator")
+            };
+        }
+
         public void AddContextMenus()
         {
-            // Wind
             ContextMenu cmWind = new ContextMenu();
-
-            cmWind.MenuItems.Add("Clear", mcWindItem_Click);
-
-            foreach (string str in allJobs)
-            {
-                cmWind.MenuItems.Add(str, mcWindItem_Click);
-            }
-
-            cmWind.MenuItems.Add("Cannoneer", mcWindItem_Click);
-            cmWind.MenuItems.Add("Oracle", mcWindItem_Click);
-            cmWind.MenuItems.Add("Gladiator", mcWindItem_Click);
-            cmWind.MenuItems.Add(VOID, mcWindItem_Click);
-
-            picWind.ContextMenu = cmWind;
-            
-            // Water
             ContextMenu cmWater = new ContextMenu();
-
-            cmWater.MenuItems.Add("Clear", mcWaterItem_Click);
-
-            foreach (string str in allJobs)
-            {
-                cmWater.MenuItems.Add(str, mcWaterItem_Click);
-            }
-
-            cmWater.MenuItems.Add("Cannoneer", mcWaterItem_Click);
-            cmWater.MenuItems.Add("Oracle", mcWaterItem_Click);
-            cmWater.MenuItems.Add("Gladiator", mcWaterItem_Click);
-            cmWater.MenuItems.Add(VOID, mcWaterItem_Click);
-
-            picWater.ContextMenu = cmWater;
-
-            // Fire
             ContextMenu cmFire = new ContextMenu();
-
-            cmFire.MenuItems.Add("Clear", mcFireItem_Click);
-
-            foreach (string str in allJobs)
-            {
-                cmFire.MenuItems.Add(str, mcFireItem_Click);
-            }
-
-            cmFire.MenuItems.Add("Cannoneer", mcFireItem_Click);
-            cmFire.MenuItems.Add("Oracle", mcFireItem_Click);
-            cmFire.MenuItems.Add("Gladiator", mcFireItem_Click);
-            cmFire.MenuItems.Add(VOID, mcFireItem_Click);
-
-            picFire.ContextMenu = cmFire;
-
-            // Earth
             ContextMenu cmEarth = new ContextMenu();
 
+            cmWind.MenuItems.Add("Clear", mcWindItem_Click);
+            cmWater.MenuItems.Add("Clear", mcWaterItem_Click);
+            cmFire.MenuItems.Add("Clear", mcFireItem_Click);
             cmEarth.MenuItems.Add("Clear", mcEarthItem_Click);
 
-            foreach (string str in allJobs)
+            foreach (Job job in allJobs)
             {
-                cmEarth.MenuItems.Add(str, mcEarthItem_Click);
+                cmWind.MenuItems.Add(job.Name, mcWindItem_Click);
+                cmWater.MenuItems.Add(job.Name, mcWaterItem_Click);
+                cmFire.MenuItems.Add(job.Name, mcFireItem_Click);
+                cmEarth.MenuItems.Add(job.Name, mcEarthItem_Click);
             }
 
-            cmEarth.MenuItems.Add("Cannoneer", mcEarthItem_Click);
-            cmEarth.MenuItems.Add("Oracle", mcEarthItem_Click);
-            cmEarth.MenuItems.Add("Gladiator", mcEarthItem_Click);
+            foreach (Job job in advance)
+            {
+                cmWind.MenuItems.Add(job.Name, mcWindItem_Click);
+                cmWater.MenuItems.Add(job.Name, mcWaterItem_Click);
+                cmFire.MenuItems.Add(job.Name, mcFireItem_Click);
+                cmEarth.MenuItems.Add(job.Name, mcEarthItem_Click);
+            }
+
+            cmWind.MenuItems.Add(VOID, mcWindItem_Click);
+            cmWater.MenuItems.Add(VOID, mcWaterItem_Click);
+            cmFire.MenuItems.Add(VOID, mcFireItem_Click);
             cmEarth.MenuItems.Add(VOID, mcEarthItem_Click);
 
+            picWind.ContextMenu = cmWind;
+            picWater.ContextMenu = cmWater;
+            picFire.ContextMenu = cmFire;
             picEarth.ContextMenu = cmEarth;
         }
         
@@ -408,185 +389,54 @@ namespace FourJobFiesta
         public void butRandomize_Click(object sender, EventArgs e)
         {
             string text = string.Empty;
+            string crystal = comboCrystal.Text;
+            string rules = comboRules.Text;
+            int mod = comboMod.SelectedIndex;
 
-            if (comboRules.Text == "Advance" && comboCrystal.Text == "Earth")
+            if (mod == 3) // pure chaos
             {
-                text = advance[r.Next(advance.Count)];
+                text = allJobs[r.Next(allJobs.Length)].Name;
             }
-            else if (comboMod.SelectedIndex == 2 && comboRules.Text != "Classic") // chaos
+            else if (rules == "Advance" && comboCrystal.Text == EARTH) // advance earth crystal
             {
-                switch (comboRules.Text)
+                text = advance[r.Next(advance.Length)].Name;
+            }
+            else if (mod == 2 && rules != CLASSIC) // chaos
+            {
+                Job[] jobs = FilterRules(allJobs, rules);
+                text = jobs[r.Next(jobs.Length)].Name;
+            }
+            else if (mod == 1) // random
+            {
+                Job[] jobs = FilterRules(allJobs, rules);
+                List<string> crystals = new List<string>();
+                crystals.Add(WIND);
+
+                switch (crystal)
                 {
-                    case "Team 750":
-                        text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count - 1)];
+                    case WATER:
+                        crystals.Add(WATER);
                         break;
-
-                    case "Team No 750":
-                        text = no750Jobs[r.Next(no750Jobs.Count - 1)];
+                    case FIRE:
+                        crystals.Add(WATER);
+                        crystals.Add(FIRE);
                         break;
-
-                    default:
-                        text = allJobs[r.Next(allJobs.Count - 2)];
+                    case EARTH:
+                        crystals.Add(WATER);
+                        crystals.Add(FIRE);
+                        crystals.Add(EARTH);
                         break;
                 }
+
+                jobs = FilterCrystals(jobs, crystals);
+
+                text = jobs[r.Next(jobs.Length)].Name;
             }
-            else if(comboMod.SelectedIndex == 3 && comboRules.Text != "Classic") // pure chaos
+            else // normal
             {
-                switch (comboRules.Text)
-                {
-                    case "Team 750":
-                        text = sevenFiftyJobs[r.Next(sevenFiftyJobs.Count)];
-                        break;
-
-                    case "Team No 750":
-                        text = no750Jobs[r.Next(no750Jobs.Count)];
-                        break;
-
-                    default:
-                        text = allJobs[r.Next(allJobs.Count)];
-                        break;
-                }
-            }
-            else // normal and random
-            {
-                switch (comboCrystal.SelectedIndex)
-                {
-                    case 0:
-                        switch (comboRules.Text)
-                        {
-                            case "Normal":
-                                text = rollJob(allJobs, 0, 6);
-                                break;
-                            case "Advance":
-                                text = rollJob(allJobs, 0, 7);
-                                break;
-                            case "Team 750":
-                                text = rollJob(sevenFiftyJobs, 0, 3);
-                                break;
-                            case "Team No 750":
-                                text = rollJob(no750Jobs, 0, 3);
-                                break;
-                            case "Classic":
-                                text = rollJob(classicJobs, 0, 5);
-                                break;
-                        }
-                        break;
-
-                    case 1:
-                        switch (comboRules.Text)
-                        {
-                            case "Normal":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 6;
-
-                                text = rollJob(allJobs, min, 11);
-                                break;
-                            case "Advance":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 7;
-
-                                text = rollJob(allJobs, min, 13);
-                                break;
-                            case "Team 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 3;
-
-                                text = rollJob(sevenFiftyJobs, min, 6);
-                                break;
-                            case "Team No 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 3;
-
-                                text = rollJob(no750Jobs, min, 6);
-                                break;
-                            case "Classic":
-                                text = rollJob(classicJobs, 0, 6);
-                                break;
-                        }
-                        break;
-
-                    case 2:
-                        switch (comboRules.Text)
-                        {
-                            case "Normal":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 11;
-
-                                text = rollJob(allJobs, min, 16);
-                                break;
-                            case "Advance":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 13;
-
-                                text = rollJob(allJobs, min, 20);
-                                break;
-                            case "Team 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 6;
-
-                                text = rollJob(sevenFiftyJobs, min, 8);
-                                break;
-                            case "Team No 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 6;
-
-                                text = rollJob(no750Jobs, min, 8);
-                                break;
-                            case "Classic":
-                                text = rollJob(classicJobs, 0, 6);
-                                break;
-                        }
-                        break;
-
-                    case 3:
-                        switch (comboRules.Text)
-                        {
-                            case "Normal":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 16;
-
-                                text = rollJob(allJobs, min, 20);
-                                break;
-                            case "Team 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 8;
-
-                                text = rollJob(sevenFiftyJobs, min, 10);
-                                break;
-                            case "Team No 750":
-                                if (comboMod.SelectedIndex == 1)
-                                    min = 0;
-                                else
-                                    min = 8;
-
-                                text = rollJob(no750Jobs, min, 10);
-                                break;
-                            case "Classic":
-                                text = rollJob(classicJobs, 0, 6);
-                                break;
-                        }
-                        break;
-                }
+                Job[] jobs = FilterRules(allJobs, rules);
+                jobs = FilterCrystals(jobs, new List<string>() { crystal });
+                text = jobs[r.Next(jobs.Length)].Name;
             }
 
             switch (comboCrystal.SelectedIndex)
@@ -640,10 +490,31 @@ namespace FourJobFiesta
                     break;
             }
         }
-        
-        public string rollJob(List<string> jobs, int min, int max)
+
+        private Job[] FilterRules(Job[] jobs, string rules)
         {
-            return jobs[r.Next(min, max)];
+            Job[] ret = jobs;
+            ret = jobs.Where(a => a.Tags.Length > 0).ToArray();
+            return rules == "Normal" || rules == "Advance" ? jobs : jobs.Where(a => a.Tags.Contains(rules)).ToArray();
+        }
+
+        private Job[] FilterCrystals(Job[] jobs, List<string> crystals)
+        {
+            List<Job> ret = new List<Job>();
+            jobs = jobs.Where(a => a.Tags.Length > 0).ToArray();
+
+            foreach (string crystal in crystals)
+            {
+                var filtered = jobs.Where(a => a.Tags.Contains(crystal)).ToList();
+                ret.AddRange(filtered);
+            }
+
+            return ret.ToArray();
+        }
+
+        public string rollJob(List<Job> jobs, int min, int max)
+        {
+            return jobs[r.Next(min, max)].ToString();
         }
 
         public void FormFourJobFiesta_Load(object sender, EventArgs e)
@@ -1235,6 +1106,11 @@ namespace FourJobFiesta
                         break;
                 }
             }
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/CBurlison/FourJobFiesta/releases");
         }
     }
 }
