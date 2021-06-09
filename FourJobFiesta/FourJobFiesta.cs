@@ -921,7 +921,7 @@ namespace FourJobFiesta
         {
             string tag = (string)picEarth.Tag;
 
-            if (!string.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(tag) && lblEarthText.Text != VOID)
             {
                 if (checkBox1.Checked)
                 {
