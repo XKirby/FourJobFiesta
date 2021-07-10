@@ -112,6 +112,20 @@ namespace FourJobFiesta
             txtTimer.BackColor = Color.Black;
             txtTimer.ForeColor = Color.White;
 
+            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
+            {
+                string theme = Program.ConfigFile.AppSettings.Settings["Theme"].Value.ToLower();
+
+                if (theme == "dark")
+                {
+                    darkToolStripMenuItem_Click(null, null);
+                }
+                else if (theme == "light")
+                {
+                    toolStripMenuItem2_Click(null, null);
+                }
+            }
+
             if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("TimerBackgroundColor"))
             {
                 string color = Program.ConfigFile.AppSettings.Settings["TimerBackgroundColor"].Value;
@@ -153,20 +167,6 @@ namespace FourJobFiesta
                             txtTimer.ForeColor = Color.FromName(color);
                     }
                     catch (Exception) { }
-                }
-            }
-
-            if (Program.ConfigFile.AppSettings.Settings.AllKeys.Contains("Theme"))
-            {
-                string theme = Program.ConfigFile.AppSettings.Settings["Theme"].Value.ToLower();
-
-                if (theme == "dark")
-                {
-                    darkToolStripMenuItem_Click(null, null);
-                }
-                else if (theme == "light")
-                {
-                    toolStripMenuItem2_Click(null, null);
                 }
             }
 
@@ -510,11 +510,6 @@ namespace FourJobFiesta
             }
 
             return ret.ToArray();
-        }
-
-        public string rollJob(List<Job> jobs, int min, int max)
-        {
-            return jobs[r.Next(min, max)].ToString();
         }
 
         public void FormFourJobFiesta_Load(object sender, EventArgs e)
