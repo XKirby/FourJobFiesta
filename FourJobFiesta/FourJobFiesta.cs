@@ -85,7 +85,7 @@ namespace FourJobFiesta
 
         private Job[] Get375Jobs()
         {
-            return allJobs.Where(a => a.Tags.Contains(TEAM750) || a.Tags.Contains(TEAMNO750)).ToArray();
+            return allJobs.Where(a => a.Tags.Contains(TEAM375)).ToArray();
         }
 
         private Job[] GetOnionJobs()
@@ -195,32 +195,32 @@ namespace FourJobFiesta
         private void BuildJobs()
         {
             allJobs = new[] { 
-                new Job("Knight", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
-                new Job("Monk", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
-                new Job("Thief", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
-                new Job("Black Mage", new[] { WIND, TEAM750, CLASSIC, ONION }),
-                new Job("White Mage", new[] { WIND, TEAM750, CLASSIC, ONION }),
-                new Job("Blue Mage", new[] { WIND, TEAM750 }),
+                new Job("Knight", new[] { WIND, TEAM375, TEAMNO750, CLASSIC, ONION }),
+                new Job("Monk", new[] { WIND, TEAM375, TEAMNO750, CLASSIC, ONION }),
+                new Job("Thief", new[] { WIND, TEAM375, TEAMNO750, CLASSIC, ONION }),
+                new Job("Black Mage", new[] { WIND, TEAM375, TEAM750, CLASSIC, ONION }),
+                new Job("White Mage", new[] { WIND, TEAM375, TEAM750, CLASSIC, ONION }),
+                new Job("Blue Mage", new[] { WIND, TEAM375, TEAM750 }),
 
-                new Job("Red Mage", new[] { WATER, TEAM750, CLASSIC, ONION }),
-                new Job("Time Mage", new[] { WATER, TEAM750 }),
-                new Job("Summoner", new[] { WATER, TEAM750, ONION }),
-                new Job("Berserker", new[] { WATER, TEAMNO750 }),
-                new Job("Mystic Knight", new[] { WATER, TEAMNO750 }),
+                new Job("Red Mage", new[] { WATER, TEAM375, TEAM750, CLASSIC, ONION }),
+                new Job("Time Mage", new[] { WATER, TEAM375, TEAM750 }),
+                new Job("Summoner", new[] { WATER, TEAM375, TEAM750, ONION }),
+                new Job("Berserker", new[] { WATER, TEAM375, TEAMNO750 }),
+                new Job("Mystic Knight", new[] { WATER, TEAM375, TEAMNO750 }),
 
-                new Job("Beastmaster", new[] { FIRE, TEAMNO750 }),
-                new Job("Geomancer", new[] { FIRE, TEAM750, ONION }),
-                new Job("Ninja", new[] { FIRE, TEAMNO750, ONION }),
-                new Job("Ranger", new[] { FIRE, TEAMNO750, ONION }),
-                new Job("Bard", new[] { FIRE, TEAM750, ONION }),
+                new Job("Beastmaster", new[] { FIRE, TEAM375, TEAMNO750 }),
+                new Job("Geomancer", new[] { FIRE, TEAM375, TEAM750, ONION }),
+                new Job("Ninja", new[] { FIRE, TEAM375, TEAMNO750, ONION }),
+                new Job("Ranger", new[] { FIRE, TEAM375, TEAMNO750, ONION }),
+                new Job("Bard", new[] { FIRE, TEAM375, TEAM750, ONION }),
 
-                new Job("Dragoon", new[] { EARTH, TEAMNO750, ONION }),
-                new Job("Dancer", new[] { EARTH, TEAM750 }),
-                new Job("Samurai", new[] { EARTH, TEAMNO750 }),
-                new Job("Chemist", new[] { EARTH, TEAM750 }),
+                new Job("Dragoon", new[] { EARTH, TEAM375, TEAMNO750, ONION }),
+                new Job("Dancer", new[] { EARTH, TEAM375, TEAM750 }),
+                new Job("Samurai", new[] { EARTH, TEAM375, TEAMNO750 }),
+                new Job("Chemist", new[] { EARTH, TEAM375, TEAM750 }),
 
-                new Job("Freelancer"),
-                new Job("Mime")
+                new Job("Freelancer", new[] { TEAM375 }),
+                new Job("Mime", new[] { TEAM375 })
             };
 
             advance = new[] {
@@ -404,6 +404,8 @@ namespace FourJobFiesta
             string crystal = comboCrystal.Text;
             string rules = comboRules.Text;
             int mod = comboMod.SelectedIndex;
+
+            if (crystal == string.Empty || rules == string.Empty) { return; }
 
             if (mod == 3) // Meteor Run
             {

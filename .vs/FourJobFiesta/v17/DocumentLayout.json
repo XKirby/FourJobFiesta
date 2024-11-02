@@ -1,70 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\fourjobfiesta\\fourjobfiesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|solutionrelative:fourjobfiesta\\fourjobfiesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\fourjobfiesta\\fourjobfiesta.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|solutionrelative:fourjobfiesta\\fourjobfiesta.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|c:\\users\\kirbo\\documents\\github\\fourjobfiesta\\fourjobfiesta\\fourjobfiesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4A9BB6DF-3FE3-4BB3-B5B0-FE0826007457}|FourJobFiesta\\FourJobFiesta.csproj|solutionrelative:fourjobfiesta\\fourjobfiesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FourJobFiesta.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.cs",
-              "RelativeDocumentMoniker": "FourJobFiesta\\FourJobFiesta.cs",
-              "ToolTip": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.cs [Design]",
-              "RelativeToolTip": "FourJobFiesta\\FourJobFiesta.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T18:04:32.351Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FourJobFiesta.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.Designer.cs",
-              "RelativeDocumentMoniker": "FourJobFiesta\\FourJobFiesta.Designer.cs",
-              "ToolTip": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.Designer.cs",
-              "RelativeToolTip": "FourJobFiesta\\FourJobFiesta.Designer.cs",
-              "ViewState": "AgIAAEkCAAAAAAAAAAASwGUCAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T17:19:08.548Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FourJobFiesta.cs",
-              "DocumentMoniker": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.cs",
-              "RelativeDocumentMoniker": "FourJobFiesta\\FourJobFiesta.cs",
-              "ToolTip": "C:\\Users\\Kirbo\\Documents\\GitHub\\FourJobFiesta\\FourJobFiesta\\FourJobFiesta.cs",
-              "RelativeToolTip": "FourJobFiesta\\FourJobFiesta.cs",
-              "ViewState": "AgIAADgCAAAAAAAAAAAqwEkCAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T17:18:36.336Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
