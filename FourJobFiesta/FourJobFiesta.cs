@@ -472,7 +472,8 @@ namespace FourJobFiesta
                         break;
                 }
 
-                jobs = FilterCrystals(jobs.ToArray(), crystals).ToList();
+                if (rules != ONION)
+                    jobs = FilterCrystals(jobs.ToArray(), crystals).ToList();
                 if (checkBox3.Checked)
                     jobs.Add(new Job("Berserker"));
                 text = jobs[r.Next(jobs.ToArray().Length)].Name;
