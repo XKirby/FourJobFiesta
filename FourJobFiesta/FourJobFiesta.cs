@@ -43,7 +43,9 @@ namespace FourJobFiesta
         public const string EARTH = "Earth";
         public const string TEAM750 = "Team 750";
         public const string TEAMNO750 = "Team No 750";
+        public const string TEAM375 = "Team 375";
         public const string CLASSIC = "Classic";
+        public const string ONION = "Onion";
 
         public FormFourJobFiesta()
         {
@@ -79,6 +81,16 @@ namespace FourJobFiesta
         private Job[] GetNo750Jobs()
         {
             return allJobs.Where(a => a.Tags.Contains(TEAMNO750)).ToArray();
+        }
+
+        private Job[] Get375Jobs()
+        {
+            return allJobs.Where(a => a.Tags.Contains(TEAM750) || a.Tags.Contains(TEAMNO750)).ToArray();
+        }
+
+        private Job[] GetOnionJobs()
+        {
+            return allJobs.Where(a => a.Tags.Contains(ONION)).ToArray();
         }
 
         private void SetOrientation()
@@ -183,26 +195,26 @@ namespace FourJobFiesta
         private void BuildJobs()
         {
             allJobs = new[] { 
-                new Job("Knight", new[] { WIND, TEAMNO750, CLASSIC }),
-                new Job("Monk", new[] { WIND, TEAMNO750, CLASSIC }),
-                new Job("Thief", new[] { WIND, TEAMNO750, CLASSIC }),
-                new Job("Black Mage", new[] { WIND, TEAM750, CLASSIC }),
-                new Job("White Mage", new[] { WIND, TEAM750, CLASSIC }),
+                new Job("Knight", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
+                new Job("Monk", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
+                new Job("Thief", new[] { WIND, TEAMNO750, CLASSIC, ONION }),
+                new Job("Black Mage", new[] { WIND, TEAM750, CLASSIC, ONION }),
+                new Job("White Mage", new[] { WIND, TEAM750, CLASSIC, ONION }),
                 new Job("Blue Mage", new[] { WIND, TEAM750 }),
 
-                new Job("Red Mage", new[] { WATER, TEAM750, CLASSIC }),
+                new Job("Red Mage", new[] { WATER, TEAM750, CLASSIC, ONION }),
                 new Job("Time Mage", new[] { WATER, TEAM750 }),
-                new Job("Summoner", new[] { WATER, TEAM750 }),
+                new Job("Summoner", new[] { WATER, TEAM750, ONION }),
                 new Job("Berserker", new[] { WATER, TEAMNO750 }),
                 new Job("Mystic Knight", new[] { WATER, TEAMNO750 }),
 
                 new Job("Beastmaster", new[] { FIRE, TEAMNO750 }),
-                new Job("Geomancer", new[] { FIRE, TEAM750 }),
-                new Job("Ninja", new[] { FIRE, TEAMNO750 }),
-                new Job("Ranger", new[] { FIRE, TEAMNO750 }),
-                new Job("Bard", new[] { FIRE, TEAM750 }),
+                new Job("Geomancer", new[] { FIRE, TEAM750, ONION }),
+                new Job("Ninja", new[] { FIRE, TEAMNO750, ONION }),
+                new Job("Ranger", new[] { FIRE, TEAMNO750, ONION }),
+                new Job("Bard", new[] { FIRE, TEAM750, ONION }),
 
-                new Job("Dragoon", new[] { EARTH, TEAMNO750 }),
+                new Job("Dragoon", new[] { EARTH, TEAMNO750, ONION }),
                 new Job("Dancer", new[] { EARTH, TEAM750 }),
                 new Job("Samurai", new[] { EARTH, TEAMNO750 }),
                 new Job("Chemist", new[] { EARTH, TEAM750 }),
@@ -393,50 +405,188 @@ namespace FourJobFiesta
             string rules = comboRules.Text;
             int mod = comboMod.SelectedIndex;
 
-            if (mod == 3) // pure chaos
+            if (mod == 3) // Meteor Run
             {
-                text = allJobs[r.Next(allJobs.Length)].Name;
+                List<Job> jobs = FilterRules(allJobs, rules).ToList();
+                text = jobs[r.Next(allJobs.Length)].Name;
+                if (checkBox2.Checked) // Advance Job on Earth Crystal
+                {
+                    text = advance[r.Next(advance.Length)].Name;
+                }
             }
-            else if (rules == "Advance" && comboCrystal.Text == EARTH) // advance earth crystal
+            else if (mod == 2) // Volcano
             {
-                text = advance[r.Next(advance.Length)].Name;
+                List<Job> jobs = FilterRules(allJobs, rules).ToList();
+                List<string> crystals = new List<string>();
+                switch (crystal)
+                {
+                    case WIND:
+                        crystals.Add(WIND);
+                        crystals.Add(WATER);
+                        crystals.Add(FIRE);
+                        crystals.Add(EARTH);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Black Mage"), new Job("Knight"), new Job("Thief"),
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage"),
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner"),
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
+                        break;
+                    case WATER:
+                        crystals.Add(WATER);
+                        crystals.Add(FIRE);
+                        crystals.Add(EARTH);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage"),
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner"),
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
+                        break;
+                    case FIRE:
+                        crystals.Add(FIRE);
+                        crystals.Add(EARTH);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner"),
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
+                        break;
+                    case EARTH:
+                        crystals.Add(EARTH);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
+                        break;
+                }
+
+                jobs = FilterCrystals(jobs.ToArray(), crystals).ToList();
+                if (checkBox3.Checked)
+                    jobs.Add(new Job("Berserker"));
+                text = jobs[r.Next(jobs.ToArray().Length)].Name;
+                if (checkBox2.Checked) // Advance Job on Earth Crystal
+                {
+                    text = advance[r.Next(advance.Length)].Name;
+                }
             }
-            else if (mod == 2 && rules != CLASSIC) // chaos
+            else if (mod == 1) // Typhoon
             {
-                Job[] jobs = FilterRules(allJobs, rules);
-                text = jobs[r.Next(jobs.Length)].Name;
-            }
-            else if (mod == 1) // random
-            {
-                Job[] jobs = FilterRules(allJobs, rules);
+                List<Job> jobs = FilterRules(allJobs, rules).ToList();
                 List<string> crystals = new List<string>();
                 crystals.Add(WIND);
+                if (rules == ONION)
+                {
+                    jobs = new List<Job> {
+                        new Job("Black Mage"), new Job("Knight"), new Job("Thief")
+                    };
+                }
 
                 switch (crystal)
                 {
                     case WATER:
                         crystals.Add(WATER);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Black Mage"), new Job("Knight"), new Job("Thief"),
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage")
+                            };
+                        }
                         break;
                     case FIRE:
                         crystals.Add(WATER);
                         crystals.Add(FIRE);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Black Mage"), new Job("Knight"), new Job("Thief"),
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage"),
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner")
+                            };
+                        }
                         break;
                     case EARTH:
                         crystals.Add(WATER);
                         crystals.Add(FIRE);
                         crystals.Add(EARTH);
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Black Mage"), new Job("Knight"), new Job("Thief"),
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage"),
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner"),
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
                         break;
                 }
 
-                jobs = FilterCrystals(jobs, crystals);
-
-                text = jobs[r.Next(jobs.Length)].Name;
+                jobs = FilterCrystals(jobs.ToArray(), crystals).ToList();
+                if (checkBox3.Checked)
+                    jobs.Add(new Job("Berserker"));
+                text = jobs[r.Next(jobs.ToArray().Length)].Name;
+                if (checkBox2.Checked) // Advance Job on Earth Crystal
+                {
+                    text = advance[r.Next(advance.Length)].Name;
+                }
             }
-            else // normal
+            else // Regular
             {
-                Job[] jobs = FilterRules(allJobs, rules);
-                jobs = FilterCrystals(jobs, new List<string>() { crystal });
-                text = jobs[r.Next(jobs.Length)].Name;
+                List<Job> jobs = FilterRules(allJobs, rules).ToList();
+                jobs = FilterCrystals(jobs.ToArray(), new List<string>() { crystal }).ToList();
+                switch (crystal)
+                {
+                    case WIND:
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Black Mage"), new Job("Knight"), new Job("Thief")
+                            };
+                        }
+                        break;
+                    case WATER:
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Monk"), new Job("Red Mage"), new Job("White Mage")
+                            };
+                        }
+                        break;
+                    case FIRE:
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Bard"), new Job("Geomancer"), new Job("Summoner")
+                            };
+                        }
+                        break;
+                    case EARTH:
+                        if (rules == ONION)
+                        {
+                            jobs = new List<Job> {
+                                new Job("Dragoon"), new Job("Ninja"), new Job("Ranger")
+                            };
+                        }
+                        break;
+                }
+                
+                if (checkBox3.Checked)
+                    jobs.Add(new Job("Berserker"));
+                text = jobs[r.Next(jobs.ToArray().Length)].Name;
+                if (checkBox2.Checked) // Advance Job on Earth Crystal
+                {
+                    text = advance[r.Next(advance.Length)].Name;
+                }
             }
 
             switch (comboCrystal.SelectedIndex)
@@ -495,7 +645,7 @@ namespace FourJobFiesta
         {
             Job[] ret = jobs;
             ret = jobs.Where(a => a.Tags.Length > 0).ToArray();
-            return rules == "Normal" || rules == "Advance" ? jobs : jobs.Where(a => a.Tags.Contains(rules)).ToArray();
+            return rules == "All Jobs" || checkBox2.Checked ? jobs : jobs.Where(a => a.Tags.Contains(rules)).ToArray();
         }
 
         private Job[] FilterCrystals(Job[] jobs, List<string> crystals)
@@ -531,7 +681,9 @@ namespace FourJobFiesta
                 "fire," + picFire.Tag,
                 "earth," + picEarth.Tag,
                 "time," + txtTimer.Text,
-                "krile," + checkBox1.Checked.ToString()
+                "krile," + checkBox1.Checked.ToString(),
+                "advance," + checkBox2.Checked.ToString(),
+                "berserker," + checkBox3.Checked.ToString()
             };
 
             if (string.IsNullOrEmpty(SaveFile))
@@ -659,6 +811,14 @@ namespace FourJobFiesta
 
                             case "krile":
                                 checkBox1.Checked = split[1] == "True";
+                                break;
+
+                            case "advance":
+                                checkBox2.Checked = split[1] == "True";
+                                break;
+
+                            case "berserker":
+                                checkBox3.Checked = split[1] == "True";
                                 break;
 
                             default:
@@ -823,7 +983,9 @@ namespace FourJobFiesta
                 "fire," + picFire.Tag,
                 "earth," + picEarth.Tag,
                 "time," + txtTimer.Text,
-                "krile," + checkBox1.Checked.ToString()
+                "krile," + checkBox1.Checked.ToString(),
+                "advance," + checkBox2.Checked.ToString(),
+                "berserker," + checkBox3.Checked.ToString()
             };
             
             SaveFileDialog sfd = new SaveFileDialog();
@@ -1105,7 +1267,37 @@ namespace FourJobFiesta
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/CBurlison/FourJobFiesta/releases");
+            Process.Start("https://github.com/XKirby/FourJobFiesta/releases");
+        }
+
+        private void comboCrystal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboRules_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboMod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

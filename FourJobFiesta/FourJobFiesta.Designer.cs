@@ -56,6 +56,9 @@
             this.editTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.picWind = new System.Windows.Forms.PictureBox();
             this.picWater = new System.Windows.Forms.PictureBox();
             this.picEarth = new System.Windows.Forms.PictureBox();
@@ -74,9 +77,8 @@
             this.lblEarthText = new System.Windows.Forms.Label();
             this.groupTimer = new System.Windows.Forms.GroupBox();
             this.buttonVoid = new System.Windows.Forms.Button();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiVersion = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
@@ -97,9 +99,9 @@
             // 
             // butRandomize
             // 
-            this.butRandomize.Location = new System.Drawing.Point(132, 228);
+            this.butRandomize.Location = new System.Drawing.Point(114, 404);
             this.butRandomize.Name = "butRandomize";
-            this.butRandomize.Size = new System.Drawing.Size(63, 23);
+            this.butRandomize.Size = new System.Drawing.Size(75, 23);
             this.butRandomize.TabIndex = 6;
             this.butRandomize.Text = "Roll!";
             this.butRandomize.UseVisualStyleBackColor = true;
@@ -109,23 +111,24 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(15, 90);
+            this.label3.Location = new System.Drawing.Point(21, 90);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Run Type:";
+            this.label3.Text = "Job Sets:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(25, 165);
+            this.label4.Location = new System.Drawing.Point(15, 165);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Modifier:";
+            this.label4.Text = "Run Type:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // menuStrip1
             // 
@@ -330,6 +333,28 @@
             this.rulesToolStripMenuItem.Text = "Rules";
             this.rulesToolStripMenuItem.Click += new System.EventHandler(this.rulesToolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdatesToolStripMenuItem,
+            this.tsmiVersion});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
+            // 
+            // tsmiVersion
+            // 
+            this.tsmiVersion.Name = "tsmiVersion";
+            this.tsmiVersion.Size = new System.Drawing.Size(171, 22);
+            this.tsmiVersion.Text = "v1.2";
+            // 
             // picWind
             // 
             this.picWind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picWind.BackgroundImage")));
@@ -382,33 +407,37 @@
             this.comboCrystal.Name = "comboCrystal";
             this.comboCrystal.Size = new System.Drawing.Size(120, 56);
             this.comboCrystal.TabIndex = 29;
+            this.comboCrystal.SelectedIndexChanged += new System.EventHandler(this.comboCrystal_SelectedIndexChanged);
             // 
             // comboRules
             // 
             this.comboRules.FormattingEnabled = true;
             this.comboRules.Items.AddRange(new object[] {
-            "Normal",
+            "All Jobs",
             "Team 750",
             "Team No 750",
+            "Team 375",
             "Classic",
-            "Advance"});
+            "Onion"});
             this.comboRules.Location = new System.Drawing.Point(75, 90);
             this.comboRules.Name = "comboRules";
             this.comboRules.Size = new System.Drawing.Size(120, 69);
             this.comboRules.TabIndex = 30;
+            this.comboRules.SelectedIndexChanged += new System.EventHandler(this.comboRules_SelectedIndexChanged);
             // 
             // comboMod
             // 
             this.comboMod.FormattingEnabled = true;
             this.comboMod.Items.AddRange(new object[] {
-            "None",
-            "Random",
-            "Chaos",
-            "Pure Chaos"});
+            "Regular",
+            "Typhoon",
+            "Volcano",
+            "Meteor"});
             this.comboMod.Location = new System.Drawing.Point(75, 165);
             this.comboMod.Name = "comboMod";
             this.comboMod.Size = new System.Drawing.Size(120, 56);
             this.comboMod.TabIndex = 31;
+            this.comboMod.SelectedIndexChanged += new System.EventHandler(this.comboMod_SelectedIndexChanged);
             // 
             // txtTimer
             // 
@@ -450,11 +479,11 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 232);
+            this.checkBox1.Location = new System.Drawing.Point(16, 334);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 17);
+            this.checkBox1.Size = new System.Drawing.Size(95, 17);
             this.checkBox1.TabIndex = 38;
-            this.checkBox1.Text = "Krile";
+            this.checkBox1.Text = "Krile (Fifth Job)";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -510,7 +539,7 @@
             // 
             this.groupTimer.Controls.Add(this.btnTmrStart);
             this.groupTimer.Controls.Add(this.btnTmrReset);
-            this.groupTimer.Location = new System.Drawing.Point(10, 250);
+            this.groupTimer.Location = new System.Drawing.Point(10, 438);
             this.groupTimer.Name = "groupTimer";
             this.groupTimer.Size = new System.Drawing.Size(185, 53);
             this.groupTimer.TabIndex = 43;
@@ -519,35 +548,35 @@
             // 
             // buttonVoid
             // 
-            this.buttonVoid.Location = new System.Drawing.Point(62, 228);
+            this.buttonVoid.Location = new System.Drawing.Point(16, 404);
             this.buttonVoid.Name = "buttonVoid";
-            this.buttonVoid.Size = new System.Drawing.Size(63, 23);
+            this.buttonVoid.Size = new System.Drawing.Size(75, 23);
             this.buttonVoid.TabIndex = 44;
             this.buttonVoid.Text = "Void";
             this.buttonVoid.UseVisualStyleBackColor = true;
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
-            // helpToolStripMenuItem
+            // checkBox2
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkForUpdatesToolStripMenuItem,
-            this.tsmiVersion});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(16, 357);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(75, 17);
+            this.checkBox2.TabIndex = 45;
+            this.checkBox2.Text = "Extra Jobs";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // checkForUpdatesToolStripMenuItem
+            // checkBox3
             // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
-            // 
-            // tsmiVersion
-            // 
-            this.tsmiVersion.Name = "tsmiVersion";
-            this.tsmiVersion.Size = new System.Drawing.Size(180, 22);
-            this.tsmiVersion.Text = "v1.0.0.3";
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(16, 380);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(95, 17);
+            this.checkBox3.TabIndex = 46;
+            this.checkBox3.Text = "Berserker Risk";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // FormFourJobFiesta
             // 
@@ -555,6 +584,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(614, 503);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.buttonVoid);
             this.Controls.Add(this.groupTimer);
             this.Controls.Add(this.lblEarthText);
@@ -580,7 +611,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FormFourJobFiesta";
-            this.Text = "Four Job Fiesta";
+            this.Text = "Final Fantasy V - Four Job Fiesta Tool";
             this.Load += new System.EventHandler(this.FormFourJobFiesta_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -643,6 +674,8 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 
