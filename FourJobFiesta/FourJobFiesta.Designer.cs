@@ -99,7 +99,7 @@
             // 
             // butRandomize
             // 
-            this.butRandomize.Location = new System.Drawing.Point(114, 404);
+            this.butRandomize.Location = new System.Drawing.Point(114, 218);
             this.butRandomize.Name = "butRandomize";
             this.butRandomize.Size = new System.Drawing.Size(75, 23);
             this.butRandomize.TabIndex = 6;
@@ -111,7 +111,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(21, 90);
+            this.label3.Location = new System.Drawing.Point(21, 63);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
@@ -122,7 +122,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(15, 165);
+            this.label4.Location = new System.Drawing.Point(15, 112);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
@@ -405,7 +405,7 @@
             "Earth"});
             this.comboCrystal.Location = new System.Drawing.Point(75, 27);
             this.comboCrystal.Name = "comboCrystal";
-            this.comboCrystal.Size = new System.Drawing.Size(120, 56);
+            this.comboCrystal.Size = new System.Drawing.Size(120, 30);
             this.comboCrystal.TabIndex = 29;
             this.comboCrystal.SelectedIndexChanged += new System.EventHandler(this.comboCrystal_SelectedIndexChanged);
             // 
@@ -419,9 +419,9 @@
             "Team 375",
             "Classic",
             "Onion"});
-            this.comboRules.Location = new System.Drawing.Point(75, 90);
+            this.comboRules.Location = new System.Drawing.Point(75, 63);
             this.comboRules.Name = "comboRules";
-            this.comboRules.Size = new System.Drawing.Size(120, 69);
+            this.comboRules.Size = new System.Drawing.Size(120, 43);
             this.comboRules.TabIndex = 30;
             this.comboRules.SelectedIndexChanged += new System.EventHandler(this.comboRules_SelectedIndexChanged);
             // 
@@ -433,9 +433,9 @@
             "Typhoon",
             "Volcano",
             "Meteor"});
-            this.comboMod.Location = new System.Drawing.Point(75, 165);
+            this.comboMod.Location = new System.Drawing.Point(75, 112);
             this.comboMod.Name = "comboMod";
-            this.comboMod.Size = new System.Drawing.Size(120, 56);
+            this.comboMod.Size = new System.Drawing.Size(120, 30);
             this.comboMod.TabIndex = 31;
             this.comboMod.SelectedIndexChanged += new System.EventHandler(this.comboMod_SelectedIndexChanged);
             // 
@@ -479,7 +479,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(16, 334);
+            this.checkBox1.Location = new System.Drawing.Point(16, 148);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(95, 17);
             this.checkBox1.TabIndex = 38;
@@ -539,7 +539,7 @@
             // 
             this.groupTimer.Controls.Add(this.btnTmrStart);
             this.groupTimer.Controls.Add(this.btnTmrReset);
-            this.groupTimer.Location = new System.Drawing.Point(10, 438);
+            this.groupTimer.Location = new System.Drawing.Point(10, 252);
             this.groupTimer.Name = "groupTimer";
             this.groupTimer.Size = new System.Drawing.Size(185, 53);
             this.groupTimer.TabIndex = 43;
@@ -548,7 +548,7 @@
             // 
             // buttonVoid
             // 
-            this.buttonVoid.Location = new System.Drawing.Point(16, 404);
+            this.buttonVoid.Location = new System.Drawing.Point(16, 218);
             this.buttonVoid.Name = "buttonVoid";
             this.buttonVoid.Size = new System.Drawing.Size(75, 23);
             this.buttonVoid.TabIndex = 44;
@@ -559,7 +559,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(16, 357);
+            this.checkBox2.Location = new System.Drawing.Point(16, 171);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(75, 17);
             this.checkBox2.TabIndex = 45;
@@ -570,7 +570,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(16, 380);
+            this.checkBox3.Location = new System.Drawing.Point(16, 194);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(95, 17);
             this.checkBox3.TabIndex = 46;

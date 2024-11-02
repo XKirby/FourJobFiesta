@@ -219,8 +219,8 @@ namespace FourJobFiesta
                 new Job("Samurai", new[] { EARTH, TEAM375, TEAMNO750 }),
                 new Job("Chemist", new[] { EARTH, TEAM375, TEAM750 }),
 
-                new Job("Freelancer", new[] { TEAM375 }),
-                new Job("Mime", new[] { TEAM375 })
+                new Job("Freelancer"),
+                new Job("Mime")
             };
 
             advance = new[] {
@@ -407,10 +407,10 @@ namespace FourJobFiesta
 
             if (crystal == string.Empty || rules == string.Empty) { return; }
 
-            if (mod == 3) // Meteor Run
+            if (mod == 3 || rules == CLASSIC) // Meteor Run
             {
                 List<Job> jobs = FilterRules(allJobs, rules).ToList();
-                text = jobs[r.Next(allJobs.Length)].Name;
+                text = jobs[r.Next(jobs.ToArray().Length)].Name;
                 if (checkBox2.Checked) // Advance Job on Earth Crystal
                 {
                     text = advance[r.Next(advance.Length)].Name;
