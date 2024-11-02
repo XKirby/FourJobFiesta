@@ -1,7 +1,8 @@
 # FourJobFiesta
 A tool to roll and display job for Final Fantasy V Four Job Fiesta. Click on the following link to download the built tool.
 
-[Download Here!](https://github.com/CBurlison/FourJobFiesta/releases)
+[Download Here!](https://github.com/XKirby/FourJobFiesta/releases)
+[(Original Author/Program Here)](https://github.com/CBurlison/FourJobFiesta/)
 
 When rolling a job as long as you have a crystal and Run Type selected, a job will be selected and displayed.
 
